@@ -53,6 +53,16 @@
         <button type="button" class="btn btn-primary js-save-btn">Save changes</button>
     </script>
 
+    <script type="text/x-handlebars" id="SelectionModalView">
+        <form class="js-test-form">
+            {{#each collection}}
+            <label class="radio">
+                <input type="radio" name="testRadio" value="{{id}}">{{title}}
+            </label>
+            {{/each}}
+        </form>
+    </script>
+
     <script src="script.js"></script>
     <script src="TestModel.js"></script>
     <script src="BaseView.js"></script>
@@ -70,6 +80,7 @@
                 <button id="custom" class="btn btn-modal">Custom Modal</button><br><br>
                 <button id="event" class="btn btn-modal">Event Modal</button><br><br>
                 <button id="callback" class="btn btn-modal">Callback Modal</button><br><br>
+                <button id="selection" class="btn btn-modal">Selection Modal</button><br><br>
             </div>
         </div>
     </div>

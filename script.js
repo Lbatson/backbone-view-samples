@@ -21,8 +21,9 @@ function modelModal() {
     'use strict';
     console.log('model');
     // pass model to modal
+    var test = new App.Models.TestModel();
     var modal = new App.Views.BaseModalView({
-        model: new App.Models.TestModel()
+        model: test
     });
     modal.show();
 }
@@ -36,10 +37,9 @@ function collectionModal() {
         new App.Models.TestModel({title: 'Second model'}),
         new App.Models.TestModel({title: 'Third model', description: 'Different description'}),
     ]);
-    App.Views.EventsModalView = App.Views.BaseModalView.extend({
+    var modal = new App.Views.BaseModalView({
         collection: tests
     });
-    var modal = new App.Views.EventsModalView();
     modal.show();
 }
 
@@ -84,7 +84,7 @@ function callbackModal() {
     var test = function (val) {
       console.log('callback', val);
     };
-    App.Views.EventsModalView = App.Views.BaseModalView.extend({
+    App.Views.CallbackModalView = App.Views.BaseModalView.extend({
         save: function () {
             this.hide();
             // run callback after modal is hidden
@@ -96,7 +96,32 @@ function callbackModal() {
             // test(this.$el);
         }
     });
-    var modal = new App.Views.EventsModalView();
+    var modal = new App.Views.CallbackModalView();
+    modal.show();
+}
+
+function selectionModal() {
+    'use strict';
+    var selectedId,
+        tests = new App.Collections.TestCollection([
+        new App.Models.TestModel({id: 1}),
+        new App.Models.TestModel({id: 2, title: 'Second model'}),
+        new App.Models.TestModel({id: 3, title: 'Third model', description: 'Different description'}),
+    ]);
+    App.Views.SelectionModalView = App.Views.BaseModalView.extend({
+        body: Handlebars.compile($('#SelectionModalView').html()),
+        save: function () {
+            this.hide();
+            this.$el.on('hidden.bs.modal', function() {
+                selectedId = parseInt(this.$('.js-test-form input[name=testRadio]:checked').val());
+                console.log('selected model', tests.get(selectedId));
+                this.teardown();
+            }.bind(this));
+        }
+    });
+    var modal = new App.Views.SelectionModalView({
+        collection: tests
+    });
     modal.show();
 }
 
@@ -123,6 +148,9 @@ $(document).ready(function () {
                 break;
             case 'callback':
                 callbackModal();
+                break;
+            case 'selection':
+                selectionModal();
                 break;
         }
     });
