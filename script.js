@@ -90,7 +90,7 @@ function callbackModal() {
             // run callback after modal is hidden
             this.$el.on('hidden.bs.modal', function() {
                 test(this.$el);
-                this.teardown();
+                this.remove();
             }.bind(this));
             // or if you don't need to wait until hidden, just run callback
             // test(this.$el);
@@ -115,7 +115,7 @@ function selectionModal() {
             this.$el.on('hidden.bs.modal', function() {
                 selectedId = parseInt(this.$('.js-test-form input[name=testRadio]:checked').val());
                 console.log('selected model', tests.get(selectedId));
-                this.teardown();
+                this.remove();
             }.bind(this));
         }
     });
