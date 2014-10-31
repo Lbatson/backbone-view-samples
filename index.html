@@ -53,6 +53,26 @@
         <button type="button" class="btn btn-primary js-save-btn">Save changes</button>
     </script>
 
+
+    <script type="text/x-handlebars" id="ListView">
+      <h2 class="list-title">{{title}}</h2>
+      <div class="list-body">
+          <div class="list-row">
+              <h5 class="list-row-item-heading">List Row</h5>
+              <li>title: test1</li>
+              <li>description: description1</li>
+          </div>
+          <div class="list-row">
+              <h5 class="list-row-item-heading">List Row</h5>
+              <li>title: test2</li>
+              <li>description: description2</li>
+          </div>
+      </div>
+      <div class="list-footer">
+          This is the footer
+      </div>
+    </script>
+
     <script type="text/x-handlebars" id="SelectionModalView">
         <form class="js-test-form">
             {{#each collection}}
@@ -67,6 +87,7 @@
     <script src="TestModel.js"></script>
     <script src="BaseView.js"></script>
     <script src="ModalView.js"></script>
+    <script src="ListView.js"></script>
   </head>
 
   <body>
@@ -81,6 +102,15 @@
                 <button id="event" class="btn btn-modal">Event Modal</button><br><br>
                 <button id="callback" class="btn btn-modal">Callback Modal</button><br><br>
                 <button id="selection" class="btn btn-modal">Selection Modal</button><br><br>
+
+            </div>
+        </div>
+        <div class ="row">
+            <div class="col-md-12">
+                <button id="baseList" class="btn btn-modal">BaseList</button>
+            </div>
+            <div class="col-md-12">
+                <div class="listDisplay"></div>
             </div>
         </div>
     </div>
