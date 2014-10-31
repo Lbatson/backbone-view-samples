@@ -132,7 +132,10 @@ function baseList () {
         el:'.listDisplay'
     });
     list.render();
+<<<<<<< HEAD
     return "baseList doesn't break";
+=======
+>>>>>>> removed some things and fixed formatting
 }
 
 $(document).ready(function () {
