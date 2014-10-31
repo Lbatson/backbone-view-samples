@@ -125,6 +125,14 @@ function selectionModal() {
     modal.show();
 }
 
+function baseList () {
+  'use strict';
+  console.log('baseList');
+  // default modal
+  var list = new App.Views.BaseListView({el:'.listDisplay'});
+  list.render();
+}
+
 $(document).ready(function () {
     'use strict';
     App.init();
@@ -152,6 +160,10 @@ $(document).ready(function () {
             case 'selection':
                 selectionModal();
                 break;
+            case 'baseList':
+                baseList();
+                break;
         }
     });
+
 });
