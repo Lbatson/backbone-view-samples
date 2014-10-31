@@ -53,6 +53,25 @@
         <button type="button" class="btn btn-primary js-save-btn">Save changes</button>
     </script>
 
+    <script type="text/x-handlebars" id="ListView">
+      <h2 class="list-title">{{title}}</h2>
+      <div class="list-body">
+          <div class="list-row">
+              <h5 class="list-row-item-heading">List Row</h5>
+              <li>title: test1</li>
+              <li>description: description1</li>
+          </div>
+          <div class="list-row">
+              <h5 class="list-row-item-heading">List Row</h5>
+              <li>title: test2</li>
+              <li>description: description2</li>
+          </div>
+      </div>
+      <div class="list-footer">
+          This is the footer
+      </div>
+    </script>
+
     <script src="script.js"></script>
     <script src="TestModel.js"></script>
     <script src="BaseView.js"></script>
