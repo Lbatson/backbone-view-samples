@@ -15,7 +15,7 @@ App.Views = App.Views || {};
         },
         initialize: function () {
             App.Views.BaseView.prototype.initialize.apply(this, arguments);
-            this.$el.on('hidden.bs.modal', this.teardown.bind(this));
+            this.$el.on('hidden.bs.modal', this.remove.bind(this));
             if (this.model) {
                 this.listenTo(this.model, 'change', this.render);
             }
@@ -48,10 +48,11 @@ App.Views = App.Views || {};
             this.$('.modal-footer').html(this.footer);
             return this;
         },
-        teardown: function () {
+        remove: function () {
             this.$el.off('hidden.bs.modal');
-            this.$el.removeData();
             this.$el.remove();
+            this.stopListening();
+            return this;
         },
         show: function () {
             this.$el.modal('show');
