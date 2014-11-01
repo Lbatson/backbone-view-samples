@@ -6,21 +6,27 @@ App.Views = App.Views || {};
       el: '.list',
       headerTitle: 'My List',
       template: Handlebars.compile($('#ListView').html()),
+      templateRow: Handlebars.compile($('#ListRow').html()),
       initialize: function () {
           App.Views.BaseView.prototype.initialize.apply(this, arguments);
       },
       render: function(){
-        this.$el.html(this.template({
-            headerTitle: this.headerTitle,
-            collection: this.collection ? this.collection.toJSON(): null
-          }));
+        this.renderBody();
+        this.renderRows();
         return this;
       },
       renderBody: function(){
-
+        this.$el.html(this.template({
+            headerTitle: this.headerTitle
+          }));
       },
-      renderRow: function(){
-
+      renderRows: function(){
+        var collection = this.collection ? this.collection.toJSON(): null,
+            newRow = {};
+        _.each(collection, function(model){
+          newRow = new App.Views.BaseListRowView({model:model});
+          newRow.render();
+        });
       }
     })
 })();

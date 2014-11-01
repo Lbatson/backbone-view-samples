@@ -85,6 +85,23 @@
         </div>
     </script>
 
+  <script type="text/x-handlebars" id="ListRow">
+        <label class="list-row">
+           <div>{{model.title}}</div>
+           <div>{{model.description}}</div>
+        </label>
+  </script>
+
+  <script type="text/x-handlebars" id="ListRowEvents">
+    {{#each collection}}
+        <label class="list-row row">
+           <div>{{title}}</div>
+           <div>{{description}}</div>
+           <button>{{buttonName}}</div>
+        </label>
+    {{/each}}
+  </script>
+
     <script src="script.js"></script>
     <script src="TestModel.js"></script>
     <script src="BaseView.js"></script>
@@ -113,6 +130,7 @@
             </div>
             <div class="col-md-12">
                 <button id="baseList" class="btn btn-modal">BaseList</button>
+                <button id="eventList" class="btn btn-modal">List With Events</button>
             </div>
             <div class="col-md-12">
                 <div class="listDisplay"></div>

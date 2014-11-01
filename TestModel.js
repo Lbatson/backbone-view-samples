@@ -6,7 +6,8 @@ App.Collections = App.Collections || {};
     App.Models.TestModel = Backbone.Model.extend({
         defaults: {
             title: 'Test Model',
-            description: 'This is a test model'
+            description: 'This is a test model',
+            buttonName: "Row <number>"
         }
     });
 

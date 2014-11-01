@@ -141,6 +141,10 @@ function baseList () {
     return "baseList doesn't break";
 }
 
+function eventList () {
+
+}
+
 $(document).ready(function () {
     'use strict';
     App.init();
@@ -170,6 +174,9 @@ $(document).ready(function () {
                 break;
             case 'baseList':
                 baseList();
+                break;
+            case 'eventList':
+                eventList();
                 break;
         }
     });
