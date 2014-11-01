@@ -127,15 +127,18 @@ function selectionModal () {
 
 function baseList () {
     'use strict';
-    console.log('baseList');
+    var tests = new App.Collections.TestCollection([
+                new App.Models.TestModel({id: 1}),
+                new App.Models.TestModel({id: 2, title: 'Second model'}),
+                new App.Models.TestModel({id: 3, title: 'Third model', description: 'Different description'}),
+            ]);
+
     var list = new App.Views.BaseListView({
-        el:'.listDisplay'
+        el:'.listDisplay',
+        collection:tests
     });
     list.render();
-<<<<<<< HEAD
     return "baseList doesn't break";
-=======
->>>>>>> removed some things and fixed formatting
 }
 
 $(document).ready(function () {
