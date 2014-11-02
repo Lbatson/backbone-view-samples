@@ -8,14 +8,16 @@ App.Views = App.Views || {};
       initialize: function () {
           App.Views.BaseView.prototype.initialize.apply(this, arguments);
       },
-      render: function(){
-        this.renderRow();
-        return this;
+      events:{
+        'click .dsc': 'alertMsg'
       },
-      renderRow: function(){
-        $(this.className).append(this.templateRow({
-            model:this.model
-          }));
+      render: function(){
+        return this.templateRow({
+                model:this.model.toJSON()
+              });
+      },
+      alertMsg: function(){
+        alert('a TEST');
       }
     })
 })();

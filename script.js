@@ -129,7 +129,6 @@ function baseList () {
     'use strict';
     var tests = createTestCollection(),
         list = new App.Views.BaseListView({
-        el:'.listDisplay',
         collection:tests
     });
     list.render();
