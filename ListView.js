@@ -24,11 +24,12 @@ App.Views = App.Views || {};
         var collection = this.collection ? this.collection.toJSON(): null,
             newRow = {};
         _.each(collection, function(model){
-          newRow = this.listRow(model);
+          this.model = model;
+          newRow = this.listRow();
           newRow.render();
         }, this);
       },
-      listRow: function(model){
-        return new App.Views.BaseListRowView({model:model})},
+      listRow: function(){
+        return new App.Views.BaseListRowView({model:this.model})},
     })
 })();

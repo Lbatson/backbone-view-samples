@@ -93,13 +93,11 @@
   </script>
 
   <script type="text/x-handlebars" id="ListRowEvents">
-    {{#each collection}}
-        <label class="list-row row">
-           <div>{{title}}</div>
-           <div>{{description}}</div>
-           <button>{{buttonName}}</div>
-        </label>
-    {{/each}}
+        <div class="list-row row">
+           <div>{{model.title}}</div>
+           <div>{{model.description}}</div>
+           <button>{{model.buttonName}}</div>
+        </div>
   </script>
 
     <script src="script.js"></script>

@@ -127,13 +127,8 @@ function selectionModal () {
 
 function baseList () {
     'use strict';
-    var tests = new App.Collections.TestCollection([
-                new App.Models.TestModel({id: 1}),
-                new App.Models.TestModel({id: 2, title: 'Second model'}),
-                new App.Models.TestModel({id: 3, title: 'Third model', description: 'Different description'}),
-            ]);
-
-    var list = new App.Views.BaseListView({
+    var tests = createTestCollection(),
+        list = new App.Views.BaseListView({
         el:'.listDisplay',
         collection:tests
     });
@@ -142,7 +137,28 @@ function baseList () {
 }
 
 function eventList () {
+    App.Views.EventListRowView = App.Views.BaseListRowView.extend({
+      templateRow: Handlebars.compile($('#ListRowEvents').html()),
+    });
+    App.Views.EventListView = App.Views.BaseListView.extend({
+      listRow: function(){return new App.Views.EventListRowView({model:this.model})},
+    });
 
+    var tests = createTestCollection(),
+        list = new App.Views.EventListView({
+            el:'.listDisplay',
+            collection:tests,
+        });
+    list.render();
+}
+
+function createTestCollection(){
+  var tests = new App.Collections.TestCollection([
+              new App.Models.TestModel({id: 1}),
+              new App.Models.TestModel({id: 2, title: 'Second model'}),
+              new App.Models.TestModel({id: 3, title: 'Third model', description: 'Different description'}),
+          ]);
+  return tests;
 }
 
 $(document).ready(function () {
