@@ -16,7 +16,7 @@ App.Views = App.Views || {};
         this.renderBody();
         this.collection.each(function(model){
           newRow = new App.Views.BaseListRowView({model:model});
-          $(this.className).append(newRow.render());
+          $(this.className).append(newRow.render().el);
         },this)
         return this;
       },
