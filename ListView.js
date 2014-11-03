@@ -11,6 +11,9 @@ App.Views = App.Views || {};
       initialize: function () {
           App.Views.BaseView.prototype.initialize.apply(this, arguments);
           this.rowView = (this.options.rowView ||App.Views.BaseListRowView);
+          this.collection = this.options.collection || null;
+          //view.listenTo(model, 'change', view.render);
+          this.listenTo(this.collection, 'add', this.test);
       },
       render: function(){
         this.renderBody();
@@ -30,6 +33,7 @@ App.Views = App.Views || {};
         //add some sort of rowView array so you can call remove on all when ended
         //
         var newRow;
+        this.collection.add(model);
         newRow = new this.rowView({model:model});
         $(this.className).append(newRow.render().el);
       },
@@ -37,6 +41,9 @@ App.Views = App.Views || {};
         this.collection.each(function(model){
           this.add(model);
         },this);
+      },
+      test:function(){
+        console.log('a test!');
       }
     })
 })();
