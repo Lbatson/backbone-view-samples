@@ -14,6 +14,7 @@ App.Views = App.Views || {};
             'click .js-save-btn': 'save'
         },
         initialize: function () {
+            console.log('hi');
             App.Views.BaseView.prototype.initialize.apply(this, arguments);
             this.$el.on('hidden.bs.modal', this.remove.bind(this));
             if (this.model) {

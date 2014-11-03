@@ -2,18 +2,17 @@ App.Views = App.Views || {};
 
 (function () {
     'use strict';
-    App.Views.BaseListView = App.Views.BaseView.extend({
+    App.Views.ListView = App.Views.BaseView.extend({
       el: '.listDisplay',
-      className: '.list-body',
       headerTitle: 'My List',
       template: Handlebars.compile($('#ListView').html()),
-      templateRow: Handlebars.compile($('#ListRow').html()),
       initialize: function () {
-          App.Views.BaseView.prototype.initialize.apply(this, arguments);
-          this.rowView = (this.options.rowView ||App.Views.BaseListRowView);
-          this.collection = this.options.collection || null;
-          //view.listenTo(model, 'change', view.render);
-          this.listenTo(this.collection, 'add', this.test);
+        App.Views.BaseView.prototype.initialize.apply(this, arguments);
+        this.rowView = this.options.rowView || App.Views.ListRowView;
+        if (this.collection) {
+          this.listenTo(this.collection, 'add', this.renderRow);
+          this.listenTo(this.collection, 'remove', this.removeRow);
+        }
       },
       render: function(){
         this.renderBody();
@@ -22,28 +21,25 @@ App.Views = App.Views || {};
       },
       renderBody: function(){
         this.$el.html(this.template({
-            headerTitle: this.headerTitle
-          }));
+          headerTitle: this.headerTitle
+        }));
       },
       add: function (model) {
-        //todo:add new collection or add new model
-        //look into the underscore method collection.add(models,[options])
-        //so..listen to things being added to a collectin and fire an event
-
-        //add some sort of rowView array so you can call remove on all when ended
-        //
-        var newRow;
         this.collection.add(model);
-        newRow = new this.rowView({model:model});
-        $(this.className).append(newRow.render().el);
       },
       addInitialRows: function(){
         this.collection.each(function(model){
-          this.add(model);
+          this.renderRow(model);
         },this);
       },
-      test:function(){
-        console.log('a test!');
+      renderRow:function(model){
+        console.log('model', model);
+        var newRow = new this.rowView({model:model});
+        this.subviews.push(newRow);
+        this.$('.list-body').append(newRow.render().el);
+      },
+      removeRow:function (model) {
+        
       }
     })
 })();

@@ -127,48 +127,35 @@ function selectionModal () {
 
 function baseList () {
     'use strict';
-    App.Views.EventListRowView = App.Views.BaseListRowView.extend({
-      templateRow: Handlebars.compile($('#ListRowEvents').html()),
-      alertMsg: function(){
-        alert('this is a different message');
-      }
-    });
     var tests = createTestCollection(),
-        list = new App.Views.BaseListView({
-                  collection:tests
-              });
+        list = new App.Views.ListView({
+            collection: tests
+        });
     list.render();
     return "baseList doesn't break";
 }
 
 function eventList () {
-    App.Views.EventListRowView = App.Views.BaseListRowView.extend({
-      templateRow: Handlebars.compile($('#ListRowEvents').html()),
-      alertMsg: function(){
-        alert('this is a different message');
-      }
+    App.Views.EventListRowView = App.Views.ListRowView.extend({
+        templateRow: Handlebars.compile($('#ListRowEvents').html())
     });
 
     var tests = createTestCollection(),
-        list = new App.Views.BaseListView({
+        list = new App.Views.ListView({
             collection:tests,
             rowView: App.Views.EventListRowView
         });
     list.render();
-    list.add(new App.Models.TestModel({
-              title:'blargh',
-              description: ' a well done blargh',
-              buttonName: 'for the blargh'
-            }));
+    list.add(new App.Models.TestModel({title: 'Add Test'}));
 }
 
 function createTestCollection(){
-  var tests = new App.Collections.TestCollection([
-              new App.Models.TestModel({id: 1}),
-              new App.Models.TestModel({id: 2, title: 'Second model'}),
-              new App.Models.TestModel({id: 3, title: 'Third model', description: 'Different description'}),
-          ]);
-  return tests;
+    var tests = new App.Collections.TestCollection([
+        new App.Models.TestModel({}),
+        new App.Models.TestModel({title: 'Second model'}),
+        new App.Models.TestModel({title: 'Third model', description: 'Different description'})
+    ]);
+    return tests;
 }
 
 $(document).ready(function () {
