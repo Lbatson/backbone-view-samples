@@ -13,7 +13,7 @@ App.Views = App.Views || {};
         'click .dsc': 'alertMsg'
       },
       render: function(){
-        $(this.el).html(this.templateRow({
+        this.$el.html(this.templateRow({
                 model:this.model.toJSON()
               }));
         return this;
