@@ -10,14 +10,11 @@ App.Views = App.Views || {};
       templateRow: Handlebars.compile($('#ListRow').html()),
       initialize: function () {
           App.Views.BaseView.prototype.initialize.apply(this, arguments);
+          this.rowView = (this.options.rowView ||App.Views.BaseListRowView);
       },
       render: function(){
-        var newRow;
         this.renderBody();
-        this.collection.each(function(model){
-          newRow = new App.Views.BaseListRowView({model:model});
-          $(this.className).append(newRow.render().el);
-        },this)
+        this.addInitialRows();
         return this;
       },
       renderBody: function(){
@@ -25,5 +22,21 @@ App.Views = App.Views || {};
             headerTitle: this.headerTitle
           }));
       },
+      add: function (model) {
+        //todo:add new collection or add new model
+        //look into the underscore method collection.add(models,[options])
+        //so..listen to things being added to a collectin and fire an event
+
+        //add some sort of rowView array so you can call remove on all when ended
+        //
+        var newRow;
+        newRow = new this.rowView({model:model});
+        $(this.className).append(newRow.render().el);
+      },
+      addInitialRows: function(){
+        this.collection.each(function(model){
+          this.add(model);
+        },this);
+      }
     })
 })();

@@ -93,10 +93,10 @@
   </script>
 
   <script type="text/x-handlebars" id="ListRowEvents">
-        <div class="list-row row">
+        <div class="list-row row ">
            <div>{{model.title}}</div>
            <div>{{model.description}}</div>
-           <button>{{model.buttonName}}</div>
+           <button class="dsc">{{model.buttonName}}</div>
         </div>
   </script>
 
@@ -122,6 +122,7 @@
             </div>
         </div>
         <div class ="row">
+            <h3>List Implementations</h3>
             <div class="col-md-12 row">
                 <button id="baseList" class="btn btn-modal">BaseList</button>
                 <button id="eventList" class="btn btn-modal">List With Events</button>
