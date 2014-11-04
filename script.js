@@ -151,9 +151,10 @@ function eventList () {
     });
     list.render();
 
-    var model = new App.Models.TestModel({title: 'Add Test'});
-    setTimeout(function() {
-        list.collection.add(model);
+    setTimeout(function () {
+        setInterval(function () {
+            addLargeCollection(list);
+        }, 2000);
     }, 1000);
 }
 
@@ -163,6 +164,21 @@ function createTestCollection(){
         new App.Models.TestModel({title: 'Second model'}),
         new App.Models.TestModel({title: 'Third model', description: 'Different description'})
     ]);
+}
+
+function addLargeCollection(list) {
+    for (var i = 0; i < 100; i++) {
+        list.collection.add(new App.Models.TestModel({title: 'Test'}));
+    }
+    setTimeout(function() {
+        removeLargeCollection(list);
+    }, 1000);
+}
+
+function removeLargeCollection(list) {
+    for (var i = 0; i < 100; i++) {
+        list.collection.remove(list.collection.at(i));
+    }
 }
 
 $(document).ready(function () {

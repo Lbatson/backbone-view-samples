@@ -24,12 +24,14 @@ App.Views = App.Views || {};
             return this;
         },
         renderRow: function (model) {
-            console.log('model', model);
-            this.$('.list-body').append(new this.rowView({model: model}).render().el);
+            var row = new this.rowView({model: model});
+            this.addSubview(row);
+            this.$('.list-body').append(row.render().el);
             return this;
         },
         removeRow: function (model) {
-            console.log('removeRow model', model);
+            var subview = this.findSubviewByModel(model);
+            this.removeSubview(subview);
         }
     })
 })();

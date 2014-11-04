@@ -13,6 +13,10 @@ App.Views = App.Views || {};
             'click .js-close-btn': 'hide',
             'click .js-save-btn': 'save'
         },
+        cleanup: function () {
+            console.log('cleanup');
+            this.$el.off('hidden.bs.modal');
+        },
         initialize: function () {
             App.Views.BaseView.prototype.initialize.apply(this, arguments);
             this.$el.on('hidden.bs.modal', this.remove.bind(this));
@@ -46,12 +50,6 @@ App.Views = App.Views || {};
         },
         renderFooter: function () {
             this.$('.modal-footer').html(this.footer);
-            return this;
-        },
-        remove: function () {
-            this.$el.off('hidden.bs.modal');
-            this.$el.remove();
-            this.stopListening();
             return this;
         },
         show: function () {
