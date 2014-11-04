@@ -86,18 +86,14 @@
     </script>
 
   <script type="text/x-handlebars" id="ListRow">
-        <label class="list-row">
-           <div>{{model.title}}</div>
-           <div class="dsc">{{model.description}}</div>
-        </label>
+        <div>{{model.title}}</div>
+        <div>{{model.description}}</div>
   </script>
 
   <script type="text/x-handlebars" id="ListRowEvents">
-        <div class="list-row row ">
-           <div>{{model.title}}</div>
-           <div>{{model.description}}</div>
-           <button class="dsc">{{model.buttonName}}</div>
-        </div>
+        <div>{{model.title}}</div>
+        <div>{{model.description}}</div>
+        <button class="btn">Event</button>
   </script>
 
     <script src="script.js"></script>
@@ -110,6 +106,7 @@
 <body>
     <div class="container">
         <div class="row">
+            <h3>Modal Implementations</h3>
             <div class="col-md-12">
                 <div style = "margin-top:20px;"></div>
                 <button id="base" class="btn btn-modal">Base Modal</button><br><br>
@@ -123,7 +120,7 @@
         </div>
         <div class ="row">
             <h3>List Implementations</h3>
-            <div class="col-md-12 row">
+            <div class="col-md-12">
                 <button id="baseList" class="btn btn-modal">BaseList</button>
                 <button id="eventList" class="btn btn-modal">List With Events</button>
             </div>

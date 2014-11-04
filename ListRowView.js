@@ -3,17 +3,13 @@ App.Views = App.Views || {};
 (function () {
     'use strict';
     App.Views.ListRowView = App.Views.BaseView.extend({
-      className: 'list-row',
-      tagName: 'div',
-      templateRow: Handlebars.compile($('#ListRow').html()),
-      initialize: function () {
-          App.Views.BaseView.prototype.initialize.apply(this, arguments);
-      },
-      render: function(){
-        this.$el.html(this.templateRow({
-          model: this.model.toJSON()
-        }));
-        return this;
-      }
+        className: 'list-row',
+        template: Handlebars.compile($('#ListRow').html()),
+        render: function(){
+            this.$el.html(this.template({
+                model: (this.model ? this.model.toJSON() : null)
+            }));
+            return this;
+        }
     })
 })();

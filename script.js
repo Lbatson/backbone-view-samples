@@ -104,10 +104,10 @@ function selectionModal () {
     'use strict';
     var selectedId,
         tests = new App.Collections.TestCollection([
-        new App.Models.TestModel({id: 1}),
-        new App.Models.TestModel({id: 2, title: 'Second model'}),
-        new App.Models.TestModel({id: 3, title: 'Third model', description: 'Different description'}),
-    ]);
+            new App.Models.TestModel({id: 1}),
+            new App.Models.TestModel({id: 2, title: 'Second model'}),
+            new App.Models.TestModel({id: 3, title: 'Third model', description: 'Different description'}),
+        ]);
     App.Views.SelectionModalView = App.Views.BaseModalView.extend({
         body: Handlebars.compile($('#SelectionModalView').html()),
         save: function () {
@@ -127,35 +127,42 @@ function selectionModal () {
 
 function baseList () {
     'use strict';
-    var tests = createTestCollection(),
-        list = new App.Views.ListView({
-            collection: tests
-        });
+    var list = new App.Views.ListView({
+        collection: createTestCollection()
+    });
     list.render();
     return "baseList doesn't break";
 }
 
 function eventList () {
     App.Views.EventListRowView = App.Views.ListRowView.extend({
-        templateRow: Handlebars.compile($('#ListRowEvents').html())
+        template: Handlebars.compile($('#ListRowEvents').html()),
+        events: {
+            'click .btn': 'alertMsg'
+        },
+        alertMsg: function () {
+            alert('Model cid: ' + this.model.cid);
+        }
     });
 
-    var tests = createTestCollection(),
-        list = new App.Views.ListView({
-            collection:tests,
-            rowView: App.Views.EventListRowView
-        });
+    var list = new App.Views.ListView({
+        collection: createTestCollection(),
+        rowView: App.Views.EventListRowView
+    });
     list.render();
-    list.add(new App.Models.TestModel({title: 'Add Test'}));
+
+    var model = new App.Models.TestModel({title: 'Add Test'});
+    setTimeout(function() {
+        list.collection.add(model);
+    }, 1000);
 }
 
 function createTestCollection(){
-    var tests = new App.Collections.TestCollection([
+    return new App.Collections.TestCollection([
         new App.Models.TestModel({}),
         new App.Models.TestModel({title: 'Second model'}),
         new App.Models.TestModel({title: 'Third model', description: 'Different description'})
     ]);
-    return tests;
 }
 
 $(document).ready(function () {

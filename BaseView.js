@@ -9,9 +9,9 @@ App.Views = App.Views || {};
             this.el = this.options.el || this.el;
         },
         remove: function () {
-            _.each(subviews, function(subview) {
-                subview.remove();
-            });
+            // _.each(subviews, function(subview) {
+            //     subview.remove();
+            // });
             this.$el.remove();
             this.stopListening();
             return this;
