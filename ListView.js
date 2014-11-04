@@ -25,9 +25,7 @@ App.Views = App.Views || {};
         },
         renderRow: function (model) {
             console.log('model', model);
-            var newRow = new this.rowView({model: model});
-            this.subviews.push(newRow);
-            this.$('.list-body').append(newRow.render().el);
+            this.$('.list-body').append(new this.rowView({model: model}).render().el);
             return this;
         },
         removeRow: function (model) {
