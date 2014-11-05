@@ -5,7 +5,7 @@ window.App = {
     Routers: {},
     init: function () {
         'use strict';
-        console.log('Hello from Backbone!');
+        return console.log('Hello from Backbone!');
     }
 };
 
@@ -132,6 +132,7 @@ function baseList () {
         el:'.listDisplay'
     });
     list.render();
+    return "baseList doesn't break";
 }
 
 $(document).ready(function () {
