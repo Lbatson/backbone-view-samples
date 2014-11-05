@@ -5,11 +5,11 @@ window.App = {
     Routers: {},
     init: function () {
         'use strict';
-        console.log('Hello from Backbone!');
+        return console.log('Hello from Backbone!');
     }
 };
 
-function baseModal() {
+function baseModal () {
     'use strict';
     console.log('base');
     // default modal
@@ -17,7 +17,7 @@ function baseModal() {
     modal.show();
 }
 
-function modelModal() {
+function modelModal () {
     'use strict';
     console.log('model');
     // pass model to modal
@@ -28,7 +28,7 @@ function modelModal() {
     modal.show();
 }
 
-function collectionModal() {
+function collectionModal () {
     'use strict';
     console.log('collection');
     // pass collection to modal
@@ -43,7 +43,7 @@ function collectionModal() {
     modal.show();
 }
 
-function customModal() {
+function customModal () {
     'use strict';
     console.log('custom');
     // extend modal to change default properties
@@ -60,7 +60,7 @@ function customModal() {
     modal.show();
 }
 
-function eventModal() {
+function eventModal () {
     'use strict';
     console.log('event');
     // pass different events. default events will be overriden
@@ -77,7 +77,7 @@ function eventModal() {
     modal.show();
 }
 
-function callbackModal() {
+function callbackModal () {
     'use strict';
     console.log('callback');
     // callback function to access modal view info
@@ -100,7 +100,7 @@ function callbackModal() {
     modal.show();
 }
 
-function selectionModal() {
+function selectionModal () {
     'use strict';
     var selectedId,
         tests = new App.Collections.TestCollection([
@@ -123,6 +123,16 @@ function selectionModal() {
         collection: tests
     });
     modal.show();
+}
+
+function baseList () {
+    'use strict';
+    console.log('baseList');
+    var list = new App.Views.BaseListView({
+        el:'.listDisplay'
+    });
+    list.render();
+    return "baseList doesn't break";
 }
 
 $(document).ready(function () {
@@ -152,6 +162,10 @@ $(document).ready(function () {
             case 'selection':
                 selectionModal();
                 break;
+            case 'baseList':
+                baseList();
+                break;
         }
     });
+
 });
