@@ -13,13 +13,8 @@ App.Views = App.Views || {};
             'click .js-close-btn': 'hide',
             'click .js-save-btn': 'save'
         },
-        cleanup: function () {
-            console.log('cleanup');
-            this.$el.off('hidden.bs.modal');
-        },
-        initialize: function () {
-            App.Views.BaseView.prototype.initialize.apply(this, arguments);
-            this.$el.on('hidden.bs.modal', this.remove.bind(this));
+        init: function () {
+            this.$el.on('hidden.bs.modal', this.destroy.bind(this));
             if (this.model) {
                 this.listenTo(this.model, 'change', this.render);
             }
@@ -27,6 +22,9 @@ App.Views = App.Views || {};
                 this.listenTo(this.collection, 'change', this.render);
             }
             this.render();
+        },
+        destroy: function () {
+            this.$el.off('hidden.bs.modal');
         },
         render: function () {
             this.renderContainer()
