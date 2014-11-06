@@ -6,13 +6,16 @@ App.Routers = App.Routers || {};
       'mainPage' : 'openMainPage'
     },
     initialize : function (){
-
+      Backbone.history.start();
     },
     openTests: function(){
-
+      $('.container').empty();
+      $('.container').html(Handlebars.compile($('#TestView').html()));
     },
     openMainPage: function(){
-      
+      $('.container').empty();
+      $('.container').html(Handlebars.compile($('#MainView').html()));
     }
+
   })
 })()

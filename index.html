@@ -3,12 +3,23 @@
 <head>
     <link rel="stylesheet" href="https://maxcdn.bootstrapcdn.com/bootstrap/2.3.2/css/bootstrap.css"/>
     <link rel="stylesheet" href="style.css"/>
+
     <script type="text/javascript" src="https://cdnjs.cloudflare.com/ajax/libs/jquery/2.1.1/jquery.min.js"></script>
     <script type="text/javascript" src="https://maxcdn.bootstrapcdn.com/bootstrap/2.3.2/js/bootstrap.min.js"></script>
     <script type="text/javascript" src="https://cdnjs.cloudflare.com/ajax/libs/underscore.js/1.7.0/underscore-min.js"></script>
     <script type="text/javascript" src="https://cdnjs.cloudflare.com/ajax/libs/backbone.js/1.1.2/backbone-min.js"></script>
     <script type="text/javascript" src="https://cdnjs.cloudflare.com/ajax/libs/handlebars.js/1.3.0/handlebars.min.js"></script>
     <script type="text/javascript" src="https://cdnjs.cloudflare.com/ajax/libs/backbone.babysitter/0.1.5/backbone.babysitter.min.js"></script>
+
+
+
+    <script src="script.js"></script>
+    <script src="TestModel.js"></script>
+    <script src="routes.js"></script>
+    <script src="BaseView.js"></script>
+    <script src="ModalView.js"></script>
+    <script src="ListView.js"></script>
+    <script src="ListRowView.js"></script>
 
     <script type="text/x-handlebars" id="ModalView">
             <div class="modal-dialog">
@@ -82,38 +93,44 @@
         <button class="btn">Event</button>
     </script>
 
-    <script src="script.js"></script>
-    <script src="TestModel.js"></script>
-    <script src="BaseView.js"></script>
-    <script src="ModalView.js"></script>
-    <script src="ListView.js"></script>
-    <script src="ListRowView.js"></script>
+    <script type="text/x-handlebars" id="MainView">
+      <div class="row">
+          <h3>Modal Implementations</h3>
+          <div class="col-md-12">
+              <div style = "margin-top:20px;"></div>
+              <button id="base" class="btn btn-modal">Base Modal</button><br><br>
+              <button id="model" class="btn btn-modal">Model Modal</button><br><br>
+              <button id="collection" class="btn btn-modal">Collection Modal</button><br><br>
+              <button id="custom" class="btn btn-modal">Custom Modal</button><br><br>
+              <button id="event" class="btn btn-modal">Event Modal</button><br><br>
+              <button id="callback" class="btn btn-modal">Callback Modal</button><br><br>
+              <button id="selection" class="btn btn-modal">Selection Modal</button><br><br>
+          </div>
+      </div>
+      <div class ="row">
+          <h3>List Implementations</h3>
+          <div class="col-md-12">
+              <button id="baseList" class="btn btn-modal">Base List</button>
+              <button id="eventList" class="btn btn-modal">Extended List</button>
+          </div>
+
+          <div class="col-md-12">
+              <div class="listDisplay"></div>
+          </div>
+      </div>
+    </script>
+
+    <script type="text/x-handlebars" id="TestView">
+        <h1>THIS IS  A TEST!!</h1>
+    </script>
 </head>
 <body>
+    <div class="col-md-12">
+        <button id="routeMain" class="btn btn-modal">Index</button>
+        <button id="routeTests" class="btn btn-modal">Tests</button>
+        <a href="vendor/tests.html">This page's tests</a>
+    </div>
     <div class="container">
-        <div class="row">
-            <h3>Modal Implementations</h3>
-            <div class="col-md-12">
-                <div style = "margin-top:20px;"></div>
-                <button id="base" class="btn btn-modal">Base Modal</button><br><br>
-                <button id="model" class="btn btn-modal">Model Modal</button><br><br>
-                <button id="collection" class="btn btn-modal">Collection Modal</button><br><br>
-                <button id="custom" class="btn btn-modal">Custom Modal</button><br><br>
-                <button id="event" class="btn btn-modal">Event Modal</button><br><br>
-                <button id="callback" class="btn btn-modal">Callback Modal</button><br><br>
-                <button id="selection" class="btn btn-modal">Selection Modal</button><br><br>
-            </div>
-        </div>
-        <div class ="row">
-            <h3>List Implementations</h3>
-            <div class="col-md-12">
-                <button id="baseList" class="btn btn-modal">BaseList</button>
-                <button id="eventList" class="btn btn-modal">List With Events</button>
-            </div>
-            <div class="col-md-12">
-                <div class="listDisplay"></div>
-            </div>
-        </div>
     </div>
 </body>
 </html>

@@ -9,6 +9,8 @@ window.App = {
     }
 };
 
+var router;
+
 function baseModal () {
     'use strict';
     console.log('base');
@@ -181,40 +183,63 @@ function removeLargeCollection(list) {
     }
 }
 
+function routeMain(){
+  router.navigate('mainPage',{trigger:true});
+  bindEvents();
+
+}
+
+function routeTests(){
+router.navigate('tests',{trigger:true});
+}
+
+function bindEvents(){
+  $('.btn-modal').on('click', function() {
+      var id = $(this).attr('id');
+      switch (id) {
+          case 'base':
+              baseModal();
+              break;
+          case 'model':
+              modelModal();
+              break;
+          case 'collection':
+              collectionModal();
+              break;
+          case 'custom':
+              customModal();
+              break;
+          case 'event':
+              eventModal();
+              break;
+          case 'callback':
+              callbackModal();
+              break;
+          case 'selection':
+              selectionModal();
+              break;
+          case 'baseList':
+              baseList();
+              break;
+          case 'eventList':
+              eventList();
+              break;
+          case 'routeMain':
+              routeMain();
+              break;
+          case 'routeTests':
+              routeTests();
+              break;
+      }
+  });
+
+}
 $(document).ready(function () {
     'use strict';
     App.init();
-    $('.btn-modal').on('click', function() {
-        var id = $(this).attr('id');
-        switch (id) {
-            case 'base':
-                baseModal();
-                break;
-            case 'model':
-                modelModal();
-                break;
-            case 'collection':
-                collectionModal();
-                break;
-            case 'custom':
-                customModal();
-                break;
-            case 'event':
-                eventModal();
-                break;
-            case 'callback':
-                callbackModal();
-                break;
-            case 'selection':
-                selectionModal();
-                break;
-            case 'baseList':
-                baseList();
-                break;
-            case 'eventList':
-                eventList();
-                break;
-        }
-    });
+
+    $(".container").html(Handlebars.compile($('#MainView').html()));
+    router = new App.Routers.Route();
+    bindEvents();
 
 });
