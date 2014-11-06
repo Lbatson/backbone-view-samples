@@ -9,8 +9,6 @@ window.App = {
     }
 };
 
-var router;
-
 function baseModal () {
     'use strict';
     console.log('base');
@@ -183,14 +181,13 @@ function removeLargeCollection(list) {
     }
 }
 
-function routeMain(){
-  router.navigate('mainPage',{trigger:true});
-  bindEvents();
-
+function routeIndex(){
+    App.Routers.MainRouter.navigate('', {trigger: true});
+    bindEvents();
 }
 
 function routeTests(){
-router.navigate('tests',{trigger:true});
+    App.Routers.MainRouter.navigate('tests', {trigger: true});
 }
 
 function bindEvents(){
@@ -224,23 +221,19 @@ function bindEvents(){
           case 'eventList':
               eventList();
               break;
-          case 'routeMain':
-              routeMain();
+          case 'routeIndex':
+              routeIndex();
               break;
           case 'routeTests':
               routeTests();
               break;
       }
   });
-
 }
-$(document).ready(function () {
+
+$(function () {
     'use strict';
-
-    $(".container").html(Handlebars.compile($('#MainView').html()));
+    $(".view-container").html(Handlebars.compile($('#MainView').html()));
     App.init();
-
-    router = new App.Routers.Route();
     bindEvents();
-
 });
