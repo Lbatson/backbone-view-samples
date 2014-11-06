@@ -236,9 +236,10 @@ function bindEvents(){
 }
 $(document).ready(function () {
     'use strict';
-    App.init();
 
     $(".container").html(Handlebars.compile($('#MainView').html()));
+    App.init();
+
     router = new App.Routers.Route();
     bindEvents();
 
