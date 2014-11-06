@@ -124,14 +124,16 @@
     <script src="ListRowView.js"></script>
 </head>
 <body>
-    <div class="container">
-        <div class="row">
-            <div class="span12">
-                <button id="routeIndex" class="btn btn-modal">Index</button>
-                <button id="routeTests" class="btn btn-modal">Tests</button>
-                <a href="vendor/tests.html">This page's tests</a>
-            </div>
+    <div class="navbar navbar-fixed-top">
+        <div class="navbar-inner">
+            <a class="brand" href="#">Backbone View Tests</a>
+            <ul class="nav">
+                <li><a href="#">Views</a></li>
+                <li><a href="#tests">Tests</a></li>
+            </ul>
         </div>
+    </div>
+    <div class="container">
         <div class="row">
             <div class="span12">
                 <div class="view-container"></div>

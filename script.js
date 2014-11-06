@@ -181,15 +181,6 @@ function removeLargeCollection(list) {
     }
 }
 
-function routeIndex(){
-    App.Routers.MainRouter.navigate('', {trigger: true});
-    bindEvents();
-}
-
-function routeTests(){
-    App.Routers.MainRouter.navigate('tests', {trigger: true});
-}
-
 function bindEvents(){
   $('.btn-modal').on('click', function() {
       var id = $(this).attr('id');

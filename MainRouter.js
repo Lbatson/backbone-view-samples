@@ -12,6 +12,7 @@ App.Routers = App.Routers || {};
         index: function(){
             $('.view-container').empty();
             $('.view-container').html(Handlebars.compile($('#MainView').html()));
+            bindEvents();
         },
         tests: function(){
             $('.view-container').empty();
