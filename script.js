@@ -151,11 +151,11 @@ function eventList () {
     });
     list.render();
 
-    setTimeout(function () {
-        setInterval(function () {
-            addLargeCollection(list);
-        }, 2000);
-    }, 1000);
+//     setTimeout(function () {
+//         setInterval(function () {
+//             addLargeCollection(list);
+//         }, 2000);
+//     }, 1000);
 }
 
 function createTestCollection(){

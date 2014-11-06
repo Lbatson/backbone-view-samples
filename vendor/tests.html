@@ -4,106 +4,112 @@
   <title>Mocha Tests</title>
   <link rel="stylesheet" href="mocha.css" />
 
-  <script type="text/x-handlebars" id="ModalView">
-          <div class="modal-dialog">
-              <div class="modal-content">
-                  <div class="modal-header">
-                      {{#if closeButton}}
-                      <button type="button" class="close" data-dismiss="modal" aria-hidden="true">x</button>
-                      {{/if}}
-                      <h4 class="modal-title">{{title}}</h4>
-                  </div>
-                  <div class="modal-body"></div>
-                  <div class="modal-footer"></div>
-              </div><!-- /.modal-content -->
-          </div><!-- /.modal-dialog -->
-  </script>
 
-  <script type="text/x-handlebars" id="ModalBodyView">
-      {{#if model}}
-          <h5>Model</h5>
-          <ul class="list-unstyled">
-          {{#each model}}
-          <li>{{@key}}: {{this}}</li>
-          {{/each}}
-          </ul>
-      {{else}}
-          {{#if collection}}
-              {{#each collection}}
-              <div class="list-group">
-                  <h5 class="list-group-item-heading">Model</h5>
-                  <li>title: {{title}}</li>
-                  <li>description: {{description}}</li>
-              </div>
-              {{/each}}
-          {{else}}
-          <h5>Body Content</h5>
-          {{/if}}
-      {{/if}}
-  </script>
+    <script type="text/x-handlebars" id="ModalView">
+            <div class="modal-dialog">
+                <div class="modal-content">
+                    <div class="modal-header">
+                        {{#if closeButton}}
+                        <button type="button" class="close" data-dismiss="modal" aria-hidden="true">x</button>
+                        {{/if}}
+                        <h4 class="modal-title">{{title}}</h4>
+                    </div>
+                    <div class="modal-body"></div>
+                    <div class="modal-footer"></div>
+                </div><!-- /.modal-content -->
+            </div><!-- /.modal-dialog -->
+    </script>
 
-  <script type="text/x-handlebars" id="ModalFooterView">
-      <button type="button" class="btn btn-default js-close-btn">Close</button>
-      <button type="button" class="btn btn-primary js-save-btn">Save changes</button>
-  </script>
+    <script type="text/x-handlebars" id="ModalBodyView">
+        {{#if model}}
+            <h5>Model</h5>
+            <ul class="list-unstyled">
+            {{#each model}}
+            <li>{{@key}}: {{this}}</li>
+            {{/each}}
+            </ul>
+        {{else}}
+            {{#if collection}}
+                {{#each collection}}
+                <div class="list-group">
+                    <h5 class="list-group-item-heading">Model</h5>
+                    <li>title: {{title}}</li>
+                    <li>description: {{description}}</li>
+                </div>
+                {{/each}}
+            {{else}}
+            <h5>Body Content</h5>
+            {{/if}}
+        {{/if}}
+    </script>
+
+    <script type="text/x-handlebars" id="ModalFooterView">
+        <button type="button" class="btn btn-default js-close-btn">Close</button>
+        <button type="button" class="btn btn-primary js-save-btn">Save changes</button>
+    </script>
 
 
-  <script type="text/x-handlebars" id="ListView">
-    <h2 class="list-title">{{headerTitle}}</h2>
-    <div class="list-body"></div>
-    <div class="list-footer">
-        <h6>This is the footer</h6>
-    </div>
-  </script>
-
-  <script type="text/x-handlebars" id="SelectionModalView">
-      <form class="js-test-form">
-          {{#each collection}}
-          <label class="radio">
-              <input type="radio" name="testRadio" value="{{id}}">{{title}}
-          </label>
-          {{/each}}
-      </form>
-  </script>
-
-<script type="text/x-handlebars" id="ListRow">
-      <label class="list-row">
-         <div>{{model.title}}</div>
-         <div class="dsc">{{model.description}}</div>
-      </label>
-</script>
-
-<script type="text/x-handlebars" id="ListRowEvents">
-      <div class="list-row row">
-         <div>{{model.title}}</div>
-         <div>{{model.description}}</div>
-         <button>{{model.buttonName}}</div>
+    <script type="text/x-handlebars" id="ListView">
+      <h2 class="list-title">{{headerTitle}}</h2>
+      <div class="list-body"></div>
+      <div class="list-footer">
+          <h6>This is the footer</h6>
       </div>
-</script>
-</head>
-<body>
-  <div id="mocha"></div>
+    </script>
+
+    <script type="text/x-handlebars" id="SelectionModalView">
+        <form class="js-test-form">
+            {{#each collection}}
+            <label class="radio">
+                <input type="radio" name="testRadio" value="{{id}}">{{title}}
+            </label>
+            {{/each}}
+        </form>
+    </script>
+
+  <script type="text/x-handlebars" id="ListRow">
+        <label class="list-row">
+           <div>{{model.title}}</div>
+           <div class="dsc">{{model.description}}</div>
+        </label>
+  </script>
+
+  <script type="text/x-handlebars" id="ListRowEvents">
+        <div class="list-row row">
+           <div>{{model.title}}</div>
+           <div>{{model.description}}</div>
+           <button>{{model.buttonName}}</div>
+        </div>
+  </script>
+
   <link data-require="bootstrap@2.3.2" data-semver="2.3.2" rel="stylesheet" href="https://maxcdn.bootstrapcdn.com/bootstrap/2.3.2/css/bootstrap.css" />
-  <script data-require="bootstrap@2.3.2" data-semver="2.3.2" src="https://maxcdn.bootstrapcdn.com/bootstrap/2.3.2/js/bootstrap.js"></script>
+  <!-- <script data-require="bootstrap@2.3.2" data-semver="2.3.2" src="https://maxcdn.bootstrapcdn.com/bootstrap/2.3.2/js/bootstrap.js"></script> -->
+
   <script data-require="underscore.js@1.6.0" data-semver="1.6.0" src="https://cdnjs.cloudflare.com/ajax/libs/underscore.js/1.6.0/underscore-min.js"></script>
   <script data-require="handlebars.js@1.3.0" data-semver="1.3.0" src="http://cdnjs.cloudflare.com/ajax/libs/handlebars.js/1.3.0/handlebars.js"></script>
-
   <script src="jquery.js"></script>
+  <script src="bootstrap.js"></script>
   <script src="chai.js"></script>
   <script src="chai-jquery.js"></script>
+  <script src="chai-changes.js"></script>
   <script src="chai-backbone.js"></script>
   <script src="mocha.js"></script>
   <script src="sinon-1.11.1.js"></script>
 
   <script src="backbone.js"></script>
   <script src="handlebar.js"></script>
-
+  <script type="text/javascript" src="https://cdnjs.cloudflare.com/ajax/libs/backbone.babysitter/0.1.5/backbone.babysitter.min.js"></script>
   <script src="../script.js"></script>
   <script src="../TestModel.js"></script>
   <script src="../BaseView.js"></script>
   <script src="../ModalView.js"></script>
   <script src="../ListView.js"></script>
   <script src="../ListRowView.js"></script>
+
+</head>
+<body>
+  <div id="mocha"></div>
+
   <script>mocha.setup('bdd')</script>
   <script src="../script_test.js"></script>
 
