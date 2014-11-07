@@ -11,5 +11,5 @@ App.Views = App.Views || {};
             }));
             return this;
         }
-    })
+    });
 })();
