@@ -32,5 +32,5 @@ App.Views = App.Views || {};
             this.removeSubview(null, model);
             return this;
         }
-    })
+    });
 })();

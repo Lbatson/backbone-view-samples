@@ -151,11 +151,11 @@ function eventList () {
     });
     list.render();
 
-    setTimeout(function () {
-        setInterval(function () {
-            addLargeCollection(list);
-        }, 2000);
-    }, 1000);
+//     setTimeout(function () {
+//         setInterval(function () {
+//             addLargeCollection(list);
+//         }, 2000);
+//     }, 1000);
 }
 
 function createTestCollection(){
@@ -181,40 +181,50 @@ function removeLargeCollection(list) {
     }
 }
 
-$(document).ready(function () {
-    'use strict';
-    App.init();
-    $('.btn-modal').on('click', function() {
-        var id = $(this).attr('id');
-        switch (id) {
-            case 'base':
-                baseModal();
-                break;
-            case 'model':
-                modelModal();
-                break;
-            case 'collection':
-                collectionModal();
-                break;
-            case 'custom':
-                customModal();
-                break;
-            case 'event':
-                eventModal();
-                break;
-            case 'callback':
-                callbackModal();
-                break;
-            case 'selection':
-                selectionModal();
-                break;
-            case 'baseList':
-                baseList();
-                break;
-            case 'eventList':
-                eventList();
-                break;
-        }
-    });
+function bindEvents(){
+  $('.btn-modal').on('click', function() {
+      var id = $(this).attr('id');
+      switch (id) {
+          case 'base':
+              baseModal();
+              break;
+          case 'model':
+              modelModal();
+              break;
+          case 'collection':
+              collectionModal();
+              break;
+          case 'custom':
+              customModal();
+              break;
+          case 'event':
+              eventModal();
+              break;
+          case 'callback':
+              callbackModal();
+              break;
+          case 'selection':
+              selectionModal();
+              break;
+          case 'baseList':
+              baseList();
+              break;
+          case 'eventList':
+              eventList();
+              break;
+          case 'routeIndex':
+              routeIndex();
+              break;
+          case 'routeTests':
+              routeTests();
+              break;
+      }
+  });
+}
 
+$(function () {
+    'use strict';
+    $(".view-container").html(Handlebars.compile($('#MainView').html()));
+    App.init();
+    bindEvents();
 });
