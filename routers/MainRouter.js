@@ -2,18 +2,29 @@ App.Routers = App.Routers || {};
 
 (function(){
     var $container = $('.view-container'),
+        TabView = (function () {
+            return new App.Views.TabView();
+        })(),
         router = Backbone.Router.extend({
             routes: {
                 ''      : 'index',
+                'list'  : 'list',
+                'modal' : 'modal',
                 'tests' : 'tests'
             },
             initialize : function (){
                 Backbone.history.start();
             },
             index: function(){
+                this.modal();
+            },
+            list: function () {
                 $container.empty();
-                $container.html(Handlebars.compile($('#MainView').html()));
-                bindEvents();
+                TabView.show('list');
+            },
+            modal: function () {
+                $container.empty();
+                TabView.show('modal');
             },
             tests: function(){
                 $container.empty();

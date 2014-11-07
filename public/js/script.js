@@ -5,7 +5,7 @@ window.App = {
     Routers: {},
     init: function () {
         'use strict';
-        return console.log('Hello from Backbone!');
+        console.log('Hello from Backbone!');
     }
 };
 
@@ -158,7 +158,7 @@ function eventList () {
 //     }, 1000);
 }
 
-function createTestCollection(){
+function createTestCollection () {
     return new App.Collections.TestCollection([
         new App.Models.TestModel({}),
         new App.Models.TestModel({title: 'Second model'}),
@@ -166,7 +166,7 @@ function createTestCollection(){
     ]);
 }
 
-function addLargeCollection(list) {
+function addLargeCollection (list) {
     for (var i = 0; i < 100; i++) {
         list.collection.add(new App.Models.TestModel({title: 'Test'}));
     }
@@ -175,56 +175,54 @@ function addLargeCollection(list) {
     }, 1000);
 }
 
-function removeLargeCollection(list) {
+function removeLargeCollection (list) {
     for (var i = 0; i < 100; i++) {
         list.collection.remove(list.collection.at(i));
     }
 }
 
 function bindEvents(){
-  $('.btn-modal').on('click', function() {
-      var id = $(this).attr('id');
-      switch (id) {
-          case 'base':
-              baseModal();
-              break;
-          case 'model':
-              modelModal();
-              break;
-          case 'collection':
-              collectionModal();
-              break;
-          case 'custom':
-              customModal();
-              break;
-          case 'event':
-              eventModal();
-              break;
-          case 'callback':
-              callbackModal();
-              break;
-          case 'selection':
-              selectionModal();
-              break;
-          case 'baseList':
-              baseList();
-              break;
-          case 'eventList':
-              eventList();
-              break;
-          case 'routeIndex':
-              routeIndex();
-              break;
-          case 'routeTests':
-              routeTests();
-              break;
-      }
-  });
+    $('.btn-modal').on('click', function() {
+        var id = $(this).attr('id');
+        switch (id) {
+            case 'base':
+                baseModal();
+                break;
+            case 'model':
+                modelModal();
+                break;
+            case 'collection':
+                collectionModal();
+                break;
+            case 'custom':
+                customModal();
+                break;
+            case 'event':
+                eventModal();
+                break;
+            case 'callback':
+                callbackModal();
+                break;
+            case 'selection':
+                selectionModal();
+                break;
+            case 'baseList':
+                baseList();
+                break;
+            case 'eventList':
+                eventList();
+                break;
+            case 'routeIndex':
+                routeIndex();
+                break;
+            case 'routeTests':
+                routeTests();
+                break;
+        }
+    });
 }
 
 $(function () {
     'use strict';
-    $(".view-container").html(Handlebars.compile($('#MainView').html()));
     App.init();
-    bindEvents();
 });

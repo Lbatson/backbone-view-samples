@@ -66,7 +66,7 @@
     </script>
 
     <script type="text/x-handlebars" id="ListView">
-        <h2 class="list-title">{{headerTitle}}</h2>
+        <h3 class="list-title">{{headerTitle}}</h3>
         <div class="list-body"></div>
         <div class="list-footer">
             <h6>This is the footer</h6>
@@ -84,23 +84,20 @@
         <button class="btn">Event</button>
     </script>
 
-    <script type="text/x-handlebars" id="MainView">
-        <div class="row">
-            <div class="span12">
-                <h3>Modal Implementations</h3>
-                <div style = "margin-top:20px;"></div>
-                <button id="base" class="btn btn-modal">Base Modal</button><br><br>
-                <button id="model" class="btn btn-modal">Model Modal</button><br><br>
-                <button id="collection" class="btn btn-modal">Collection Modal</button><br><br>
-                <button id="custom" class="btn btn-modal">Custom Modal</button><br><br>
-                <button id="event" class="btn btn-modal">Event Modal</button><br><br>
-                <button id="callback" class="btn btn-modal">Callback Modal</button><br><br>
-                <button id="selection" class="btn btn-modal">Selection Modal</button><br><br>
-            </div>
+    <script type="text/x-handlebars" id="TabView">
+        <h3>Tab View</h3>
+        <ul class="nav nav-tabs">
+            <li class="active"><a href="#modal">Modal</a></li>
+            <li><a href="#list">List</a></li>
+        </ul>
+        <div class="tab-content">
+            <div class="tab-pane active"></div>
         </div>
+    </script>
+
+    <script type="text/x-handlebars" id="ListViewTab">
         <div class ="row">
             <div class="span12">
-                <h3>List Implementations</h3>
                 <button id="baseList" class="btn btn-modal">Base List</button>
                 <button id="eventList" class="btn btn-modal">Extended List</button>
             </div>
@@ -108,6 +105,20 @@
         <div class="row">
             <div class="span12">
                 <div class="listDisplay"></div>
+            </div>
+        </div>
+    </script>
+
+    <script type="text/x-handlebars" id="ModalViewTab">
+        <div class="row">
+            <div class="span12">
+                <button id="base" class="btn btn-modal">Base Modal</button><br><br>
+                <button id="model" class="btn btn-modal">Model Modal</button><br><br>
+                <button id="collection" class="btn btn-modal">Collection Modal</button><br><br>
+                <button id="custom" class="btn btn-modal">Custom Modal</button><br><br>
+                <button id="event" class="btn btn-modal">Event Modal</button><br><br>
+                <button id="callback" class="btn btn-modal">Callback Modal</button><br><br>
+                <button id="selection" class="btn btn-modal">Selection Modal</button><br><br>
             </div>
         </div>
     </script>
@@ -138,7 +149,7 @@
 <body>
     <div class="navbar navbar-fixed-top">
         <div class="navbar-inner">
-            <a class="brand" href="#">Backbone View Tests</a>
+            <a class="brand" href="">Backbone View Tests</a>
             <ul class="nav">
                 <li><a href="#">Views</a></li>
                 <li><a href="#tests">Tests</a></li>
@@ -164,11 +175,12 @@
     <!-- Project sources -->
     <script type="text/javascript" src="public/js/script.js"></script>
     <script type="text/javascript" src="models/TestModel.js"></script>
-    <script type="text/javascript" src="routers/MainRouter.js"></script>
     <script type="text/javascript" src="views/BaseView.js"></script>
     <script type="text/javascript" src="views/ModalView.js"></script>
     <script type="text/javascript" src="views/ListView.js"></script>
     <script type="text/javascript" src="views/ListRowView.js"></script>
+    <script type="text/javascript" src="views/TabView.js"></script>
+    <script type="text/javascript" src="routers/MainRouter.js"></script>
 
     <!-- Tests -->
     <script type="text/javascript" src="tests/script_test.js"></script>
