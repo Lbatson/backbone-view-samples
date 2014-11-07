@@ -3,7 +3,7 @@
   <meta charset="utf-8">
   <title>Mocha Tests</title>
   <link rel="stylesheet" href="mocha.css" />
-
+  <link rel="stylesheet" href="../public/css/style.css" />
 
     <script type="text/x-handlebars" id="ModalView">
             <div class="modal-dialog">
@@ -47,7 +47,6 @@
         <button type="button" class="btn btn-default js-close-btn">Close</button>
         <button type="button" class="btn btn-primary js-save-btn">Save changes</button>
     </script>
-
 
     <script type="text/x-handlebars" id="ListView">
       <h2 class="list-title">{{headerTitle}}</h2>
@@ -108,23 +107,55 @@
 
 </head>
 <body>
-
-  <a href="../index.html">Main Page</a>
-  <div id="mocha"></div>
-
-  <script>mocha.setup('bdd')</script>
-  <script src="../tests/script_test.js"></script>
-
-
-  <script>
-    mocha.checkLeaks();
-    mocha.globals(['jQuery']);
+    <div class="navbar navbar-fixed-top">
+        <div class="navbar-inner">
+            <a class="brand" href="">Backbone View Tests</a>
+            <ul class="nav">
+                <li><a href="../index.html">Views</a></li>
+                <li><a href="">Tests</a></li>
+            </ul>
+        </div>
+    </div>
+    <div class="container">
+        <div class="row">
+            <div class="span3"></div>
+            <div class="span6">
+                <p class="lead">Steps for CLI tests</p>
+                <ul>
+                    <li>Install node.js and npm</li>
+                    <ul>
+                        <li><a href="http://nodejs.org">node.js</a></li>
+                    </ul>
+                    <li class="mu">Install mocha, phantomjs, and mocha-phantomjs</li>
+                    <ul>
+                        <li><code>npm install -g mocha mocha-phantomjs phantomjs</code></li>
+                    </ul>
+                    <li>Make sure to replace mocha.run() in test.html with:</li>
+<pre class="pre-scrollable">
     if (window.mochaPhantomJS) {
-      mochaPhantomJS.run();
+        mochaPhantomJS.run();
+    } else {
+        mocha.run();
     }
-    else {
-      mocha.run();
-    }
-  </script>
+</pre>
+                </ul>
+            </div>
+            <div class="span3"></div>
+        </div>
+        <div id="mocha"></div>
+    </div>
+
+    <script>mocha.setup('bdd')</script>
+    <script src="../tests/script_test.js"></script>
+
+    <script>
+        mocha.checkLeaks();
+        mocha.globals(['jQuery']);
+        if (window.mochaPhantomJS) {
+            mochaPhantomJS.run();
+        } else {
+            mocha.run();
+        }
+    </script>
 </body>
 </html>
