@@ -1,6 +1,19 @@
+    // require('../vendor/jquery.js');
+    // require('../vendor/underscore.js');
 
-function runTests() {
+   // var chai = require('../vendor/chai.js');
     var expect = chai.expect;
+
+
+    // require('../vendor/backbone.js');
+
+    // require('../public/js/script.js');
+
+    // require('../views/BaseView.js');
+    // require('../views/ListView.js');
+    // require('../views/ListRowView.js');
+    // require('../views/ModalView.js');
+    // require('../views/TabView.js');
 
     describe("The App", function() {
         it("App exists", function() {
@@ -53,15 +66,14 @@ function runTests() {
         //var model
 
         it("Base List View should be an object", function() {
-          console.log(App.Views);
-          var tests = {};
+          var tests = 'test';
           var list = new App.Views.ListView();
-
-          expect(list).to.be.an("object");
+          expect(tests).to.be.an("object");
         });
 
         // it("Mode should trigger an add event"){
         //
         // }
     });
-}
+
+    //phantom.exit();
