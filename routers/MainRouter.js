@@ -29,11 +29,6 @@ App.Routers = App.Routers || {};
             tests: function(){
                 $container.empty();
                 $container.html(Handlebars.compile($('#TestView').html()));
-                mocha.setup('bdd');
-                runTests();
-                mocha.checkLeaks();
-                mocha.globals(['jQuery']);
-                mocha.run();
             }
         });
     App.Routers.MainRouter = new router();

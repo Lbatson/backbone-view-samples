@@ -125,7 +125,24 @@
 
     <script type="text/x-handlebars" id="TestView">
         <h3>Test View</h3>
-        <div id="mocha"></div>
+        <ul>
+          <li>Install Node and NPM</li>
+          <li>via NPM install phantomjs and mocha-phantomjs</li>
+              <ul>
+                <li>npm install -g mocha-phantomjs phantomjs</li>
+              </ul>
+          <li>  Make sure to replace mocha.run() in test.html with:
+              <ul>
+                <li>
+
+                  if (window.mochaPhantomJS) { mochaPhantomJS.run(); } <br>
+                  else { mocha.run(); }
+                </li>
+              </ul>
+
+          </li>
+          <li><a href="vendor/tests.html">Or click here</a></li>
+        </ul>
     </script>
 
 </head>
