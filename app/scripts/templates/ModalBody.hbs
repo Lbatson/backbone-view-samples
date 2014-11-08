@@ -1,0 +1,20 @@
+{{#if model}}
+    <h5>Model</h5>
+    <ul class="list-unstyled">
+    {{#each model}}
+    <li>{{@key}}: {{this}}</li>
+    {{/each}}
+    </ul>
+{{else}}
+    {{#if collection}}
+        {{#each collection}}
+        <div class="list-group">
+            <h5 class="list-group-item-heading">Model</h5>
+            <li>title: {{title}}</li>
+            <li>description: {{description}}</li>
+        </div>
+        {{/each}}
+    {{else}}
+    <h5>Body Content</h5>
+    {{/if}}
+{{/if}}

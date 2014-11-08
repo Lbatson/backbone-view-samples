@@ -1,5 +1,5 @@
 {
-  "name": "backbone-view-samples",
+  "name": "backboneviewsamples",
   "private": true,
   "dependencies": {
     "chai": "~1.8.0",

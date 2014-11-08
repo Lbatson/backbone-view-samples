@@ -32,10 +32,6 @@ module.exports = function (grunt) {
                 nospawn: true,
                 livereload: true
             },
-            compass: {
-                files: ['<%= yeoman.app %>/styles/{,*/}*.{scss,sass}'],
-                tasks: ['compass']
-            },
             livereload: {
                 options: {
                     livereload: grunt.option('livereloadport') || LIVERELOAD_PORT
@@ -132,23 +128,6 @@ module.exports = function (grunt) {
                 }
             }
         },
-        compass: {
-            options: {
-                sassDir: '<%= yeoman.app %>/styles',
-                cssDir: '.tmp/styles',
-                imagesDir: '<%= yeoman.app %>/images',
-                javascriptsDir: '<%= yeoman.app %>/scripts',
-                fontsDir: '<%= yeoman.app %>/styles/fonts',
-                importPath: '<%= yeoman.app %>/bower_components',
-                relativeAssets: true
-            },
-            dist: {},
-            server: {
-                options: {
-                    debugInfo: true
-                }
-            }
-        },
         // not enabled since usemin task does concat and uglify
         // check index.html to edit your build targets
         // enable this task if you prefer defining your build targets here
@@ -220,7 +199,6 @@ module.exports = function (grunt) {
                         '*.{ico,txt}',
                         'images/{,*/}*.{webp,gif}',
                         'styles/fonts/{,*/}*.*',
-                        'bower_components/sass-bootstrap/fonts/*.*'
                     ]
                 }, {
                     src: 'node_modules/apache-server-configs/dist/.htaccess',
@@ -231,7 +209,10 @@ module.exports = function (grunt) {
         handlebars: {
             compile: {
                 options: {
-                    namespace: 'JST'
+                    namespace: 'App.Templates',
+                    processName: function(filePath) {
+                        return filePath.replace(/app\/scripts\/templates\/(.*)\.hbs/, '$1');
+                    }
                 },
                 files: {
                     '.tmp/scripts/templates.js': ['<%= yeoman.app %>/scripts/templates/*.hbs']
@@ -246,7 +227,6 @@ module.exports = function (grunt) {
                         '<%= yeoman.dist %>/styles/{,*/}*.css',
                         '<%= yeoman.dist %>/images/{,*/}*.{png,jpg,jpeg,gif,webp}',
                         '/styles/fonts/{,*/}*.*',
-                        'bower_components/sass-bootstrap/fonts/*.*'
                     ]
                 }
             }
@@ -272,7 +252,6 @@ module.exports = function (grunt) {
                 'clean:server',
                 'createDefaultTemplate',
                 'handlebars',
-                'compass:server',
                 'connect:test',
                 'open:test',
                 'watch'
@@ -283,7 +262,6 @@ module.exports = function (grunt) {
             'clean:server',
             'createDefaultTemplate',
             'handlebars',
-            'compass:server',
             'connect:livereload',
             'open:server',
             'watch'
@@ -296,7 +274,6 @@ module.exports = function (grunt) {
                 'clean:server',
                 'createDefaultTemplate',
                 'handlebars',
-                'compass',
                 'connect:test',
                 'mocha',
             ];
@@ -314,7 +291,6 @@ module.exports = function (grunt) {
         'clean:dist',
         'createDefaultTemplate',
         'handlebars',
-        'compass:dist',
         'useminPrepare',
         'imagemin',
         'htmlmin',

@@ -4,11 +4,11 @@ App.Views = App.Views || {};
     'use strict';
     App.Views.BaseModalView = App.Views.BaseView.extend({
         className: 'modal fade',
-        template: Handlebars.compile($('#ModalView').html()),
+        template: App.Templates.Modal,
         closeButton: false,
         title: 'Header',
-        body: Handlebars.compile($('#ModalBodyView').html()),
-        footer: Handlebars.compile($('#ModalFooterView').html()),
+        body: App.Templates.ModalBody,
+        footer: App.Templates.ModalFooter,
         events: {
             'click .js-close-btn': 'hide',
             'click .js-save-btn': 'save'

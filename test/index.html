@@ -4,6 +4,8 @@
     <meta charset="utf-8">
     <title>Mocha Spec Runner</title>
     <link rel="stylesheet" href="bower_components/mocha/mocha.css">
+    <link rel="stylesheet" href="bower_components/bootstrap/docs/assets/css/bootstrap.css">
+    <link rel="stylesheet" href="styles/main.css" />
 </head>
 <body>
     <div id="mocha"></div>
@@ -17,10 +19,35 @@
     </script>
 
     <!-- include source files here... -->
+    <!-- vendor -->
+    <script src="bower_components/jquery/dist/jquery.js"></script>
+    <script src="bower_components/bootstrap/docs/assets/js/bootstrap.js"></script>
+    <script src="bower_components/lodash/dist/lodash.compat.js"></script>
+    <script src="bower_components/backbone/backbone.js"></script>
+    <script src="bower_components/backbone.babysitter/lib/backbone.babysitter.js"></script>
+    <script src="bower_components/handlebars/handlebars.js"></script>
+    <!-- project -->
+    <script src="scripts/main.js"></script>
+    <script src="scripts/templates.js"></script>
+    <script src="scripts/models/TestModel.js"></script>
+    <script src="scripts/views/BaseView.js"></script>
+    <script src="scripts/views/ListView.js"></script>
+    <script src="scripts/views/ListRowView.js"></script>
+    <script src="scripts/views/ModalView.js"></script>
+    <script src="scripts/views/TabView.js"></script>
+    <script src="scripts/routers/MainRouter.js"></script>
 
     <!-- include spec files here... -->
     <script src="spec/test.js"></script>
 
-    <script>mocha.run()</script>
+    <script>
+        mocha.checkLeaks();
+        mocha.globals(['jQuery']);
+        if (window.mochaPhantomJS) {
+            mochaPhantomJS.run();
+        } else {
+            mocha.run();
+        }
+    </script>
 </body>
 </html>

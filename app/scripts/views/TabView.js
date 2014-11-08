@@ -4,7 +4,7 @@ App.Views = App.Views || {};
     'use strict';
     App.Views.TabView = App.Views.BaseView.extend({
         el: '.view-container',
-        template: Handlebars.compile($('#TabView').html()),
+        template: App.Templates.Tab,
         show: function (view) {
             this.render().tab(view);
         },
@@ -12,12 +12,12 @@ App.Views = App.Views || {};
             this.$('a[href="#' + view + '"]').tab('show');
             var content = this.$('.tab-content .tab-pane.active');
             switch (view) {
-                case 'modal':
-                    content.html(Handlebars.compile($('#ModalViewTab').html()));
-                    break;
-                case 'list':
-                    content.html(Handlebars.compile($('#ListViewTab').html()));
-                    break;
+            case 'modal':
+                content.html(App.Templates.TabModal());
+                break;
+            case 'list':
+                content.html(App.Templates.TabList());
+                break;
             }
             bindEvents();
             return this;

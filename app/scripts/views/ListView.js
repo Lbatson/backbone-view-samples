@@ -5,7 +5,7 @@ App.Views = App.Views || {};
     App.Views.ListView = App.Views.BaseView.extend({
         el: '.listDisplay',
         headerTitle: 'List View',
-        template: Handlebars.compile($('#ListView').html()),
+        template: App.Templates.List,
         init: function () {
             this.rowView = this.options.rowView || App.Views.ListRowView;
             if (this.collection) {

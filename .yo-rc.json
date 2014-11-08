@@ -1,12 +1,12 @@
 {
-    "generator-backbone": {
-        "appPath": "app",
-        "appName": "BackboneViewSamples",
-        "coffee": false,
-        "testFramework": "mocha",
-        "templateFramework": "handlebars",
-        "compassBootstrap": true,
-        "includeRequireJS": false
-    },
-    "generator-mocha": {}
+  "generator-backbone": {
+    "appPath": "app",
+    "appName": "BackboneViewSamples",
+    "coffee": false,
+    "testFramework": "mocha",
+    "templateFramework": "handlebars",
+    "compassBootstrap": false,
+    "includeRequireJS": false
+  },
+  "generator-mocha": {}
 }
