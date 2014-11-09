@@ -14,6 +14,12 @@ App.Views = App.Views || {};
             this.$el.html(this.template(this.options));
             return this;
         },
+        reset: function () {
+            this._container.each(function (view) {
+                this.removeSubview(view);
+            }, this);
+            return this;
+        },
         remove: function () {
             this._container.each(function (view) {
                 this.removeSubview(view);

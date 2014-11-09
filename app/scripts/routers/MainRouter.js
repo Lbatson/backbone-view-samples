@@ -20,11 +20,10 @@ App.Routers = App.Routers || {};
             },
             list: function () {
                 $container.empty();
-                TabView.show('list');
+                TabView.reset().show('list');
             },
             modal: function () {
-                $container.empty();
-                TabView.show('modal');
+                TabView.reset().show('modal');
             },
             tests: function(){
                 $container.empty();
