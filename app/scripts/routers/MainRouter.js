@@ -1,16 +1,16 @@
 App.Routers = App.Routers || {};
 
 (function(){
+    'use strict';
     var $container = $('.view-container'),
         TabView = (function () {
             return new App.Views.TabView();
         })(),
-        router = Backbone.Router.extend({
+        Router = Backbone.Router.extend({
             routes: {
                 ''      : 'index',
                 'list'  : 'list',
-                'modal' : 'modal',
-                'tests' : 'tests'
+                'modal' : 'modal'
             },
             initialize : function (){
                 Backbone.history.start();
@@ -19,16 +19,11 @@ App.Routers = App.Routers || {};
                 this.modal();
             },
             list: function () {
-                $container.empty();
-                TabView.reset().show('list');
+                TabView.show('list');
             },
             modal: function () {
-                TabView.reset().show('modal');
-            },
-            tests: function(){
-                $container.empty();
-                $container.html(Handlebars.compile($('#TestView').html()));
+                TabView.show('modal');
             }
         });
-    App.Routers.MainRouter = new router();
+    App.Routers.MainRouter = new Router();
 })();

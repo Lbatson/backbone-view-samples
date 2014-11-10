@@ -6,7 +6,7 @@ App.Views = App.Views || {};
         el: '.view-container',
         template: App.Templates.Tab,
         show: function (view) {
-            this.render().tab(view);
+            this.removeSubviews().render().tab(view);
         },
         tab: function (view) {
             this.$('a[href="#' + view + '"]').tab('show');
@@ -14,7 +14,7 @@ App.Views = App.Views || {};
             switch (view) {
             case 'modal':
                 var row = App.Views.ListRowView.extend({
-                        template: App.Templates.TabRow
+                        template: App.Templates.ButtonRow
                     }),
                     collection = new App.Collections.TestCollection([
                         new App.Models.TestModel({title: 'Base Modal', description: 'base'}),
@@ -25,8 +25,11 @@ App.Views = App.Views || {};
                         new App.Models.TestModel({title: 'Callback Modal', description: 'callback'}),
                         new App.Models.TestModel({title: 'Selection Modal', description: 'selection'}),
                     ]),
-                    modalList = new App.Views.ListView({
+                    list = App.Views.ListView.extend({
                         el: content,
+                        template: Handlebars.compile('<div class="list-body"></div>'),
+                    }),
+                    modalList = new list({
                         collection: collection,
                         rowView: row
                     });
@@ -34,7 +37,56 @@ App.Views = App.Views || {};
                 modalList.render();
                 break;
             case 'list':
-                content.html(App.Templates.TabList());
+                var row = App.Views.ListRowView.extend({
+                        template: App.Templates.ButtonRow
+                    }),
+                    collection = new App.Collections.TestCollection([
+                        new App.Models.TestModel({title: 'List View', description: 'baseList'}),
+                        new App.Models.TestModel({title: 'List View Events', description: 'eventList'})
+                    ]),
+                    list = App.Views.ListView.extend({
+                        el: content,
+                        template: App.Templates.TabList,
+                        events: {
+                            'click #baseList': 'baseList',
+                            'click #eventList': 'eventList'
+                        },
+                        baseList: function () {
+                            var list = new App.Views.ListView({
+                                collection: this.createTestCollection()
+                            });
+                            list.render();
+                        },
+                        eventList: function () {
+                            App.Views.EventListRowView = App.Views.ListRowView.extend({
+                                template: App.Templates.ListRowEvents,
+                                events: {
+                                    'click .btn': 'alertMsg'
+                                },
+                                alertMsg: function () {
+                                    window.alert('Model cid: ' + this.model.cid);
+                                }
+                            });
+                            var list = new App.Views.ListView({
+                                collection: this.createTestCollection(),
+                                rowView: App.Views.EventListRowView
+                            });
+                            list.render();
+                        },
+                        createTestCollection: function () {
+                            return new App.Collections.TestCollection([
+                                new App.Models.TestModel({}),
+                                new App.Models.TestModel({title: 'Second model'}),
+                                new App.Models.TestModel({title: 'Third model', description: 'Different description'})
+                            ]);
+                        }
+                    }),
+                    listOfLists = new list({
+                        collection: collection,
+                        rowView: row
+                    });
+                this.addSubview(listOfLists);
+                listOfLists.render();
                 break;
             }
             bindEvents();

@@ -14,16 +14,8 @@ App.Views = App.Views || {};
             this.$el.html(this.template(this.options));
             return this;
         },
-        reset: function () {
-            this._container.each(function (view) {
-                this.removeSubview(view);
-            }, this);
-            return this;
-        },
         remove: function () {
-            this._container.each(function (view) {
-                this.removeSubview(view);
-            }, this);
+            this.removeSubviews();
             this.destroy();
             this.$el.remove();
             this.stopListening();
@@ -45,6 +37,12 @@ App.Views = App.Views || {};
             }
             this._container.remove(view);
             view.remove();
+        },
+        removeSubviews: function () {
+            this._container.each(function (view) {
+                this.removeSubview(view);
+            }, this);
+            return this;
         }
     });
 })();

@@ -125,66 +125,6 @@ function selectionModal () {
     modal.show();
 }
 
-function baseList () {
-    'use strict';
-    var list = new App.Views.ListView({
-        collection: createTestCollection()
-    });
-    list.render();
-    return 'baseList does not break';
-}
-
-function eventList () {
-    'use strict';
-    App.Views.EventListRowView = App.Views.ListRowView.extend({
-        template: App.Templates.ListRowEvents,
-        events: {
-            'click .btn': 'alertMsg'
-        },
-        alertMsg: function () {
-            window.alert('Model cid: ' + this.model.cid);
-        }
-    });
-
-    var list = new App.Views.ListView({
-        collection: createTestCollection(),
-        rowView: App.Views.EventListRowView
-    });
-    list.render();
-
-//     setTimeout(function () {
-//         setInterval(function () {
-//             addLargeCollection(list);
-//         }, 2000);
-//     }, 1000);
-}
-
-function createTestCollection () {
-    'use strict';
-    return new App.Collections.TestCollection([
-        new App.Models.TestModel({}),
-        new App.Models.TestModel({title: 'Second model'}),
-        new App.Models.TestModel({title: 'Third model', description: 'Different description'})
-    ]);
-}
-
-function addLargeCollection (list) {
-    'use strict';
-    for (var i = 0; i < 100; i++) {
-        list.collection.add(new App.Models.TestModel({title: 'Test'}));
-    }
-    setTimeout(function() {
-        removeLargeCollection(list);
-    }, 1000);
-}
-
-function removeLargeCollection (list) {
-    'use strict';
-    for (var i = 0; i < 100; i++) {
-        list.collection.remove(list.collection.at(i));
-    }
-}
-
  function bindEvents(){
     'use strict';
     $('.btn-modal').on('click', function() {
@@ -210,12 +150,6 @@ function removeLargeCollection (list) {
             break;
         case 'selection':
             selectionModal();
-            break;
-        case 'baseList':
-            baseList();
-            break;
-        case 'eventList':
-            eventList();
             break;
         }
     });
