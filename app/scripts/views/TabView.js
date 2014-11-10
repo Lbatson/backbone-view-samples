@@ -1,4 +1,5 @@
 App.Views = App.Views || {};
+App.Views.Modal = App.Views.Modal || {};
 
 (function () {
     'use strict';
@@ -28,6 +29,15 @@ App.Views = App.Views || {};
                     ModalList = App.Views.ListView.extend({
                         el: content,
                         template: Handlebars.compile('<div class="list-body"></div>'),
+                        events: {
+                            'click #base': 'base',
+                            'click #callback': 'callback'
+                        },
+                        base: App.Views.Modal.Base,
+                        callback: App.Views.Modal.Callback,
+                        test: function (val) {
+                            console.log('callback:', val);
+                        }
                     }),
                     modalList = new ModalList({
                         collection: modalButtonCollection,

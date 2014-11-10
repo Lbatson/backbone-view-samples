@@ -9,14 +9,6 @@ window.App = {
     }
 };
 
-function baseModal () {
-    'use strict';
-    console.log('base');
-    // default modal
-    var modal = new App.Views.BaseModalView();
-    modal.show();
-}
-
 function modelModal () {
     'use strict';
     console.log('model');
@@ -77,28 +69,28 @@ function eventModal () {
     modal.show();
 }
 
-function callbackModal () {
-    'use strict';
-    console.log('callback');
-    // callback function to access modal view info
-    var test = function (val) {
-        console.log('callback', val);
-    };
-    App.Views.CallbackModalView = App.Views.BaseModalView.extend({
-        save: function () {
-            this.hide();
-            // run callback after modal is hidden
-            this.$el.on('hidden.bs.modal', function() {
-                test(this.$el);
-                this.remove();
-            }.bind(this));
-            // or if you don't need to wait until hidden, just run callback
-            // test(this.$el);
-        }
-    });
-    var modal = new App.Views.CallbackModalView();
-    modal.show();
-}
+// function callbackModal () {
+//     'use strict';
+//     console.log('callback');
+//     // callback function to access modal view info
+//     var test = function (val) {
+//         console.log('callback', val);
+//     };
+//     App.Views.CallbackModalView = App.Views.BaseModalView.extend({
+//         save: function () {
+//             this.hide();
+//             // run callback after modal is hidden
+//             this.$el.on('hidden.bs.modal', function() {
+//                 test(this.$el);
+//                 this.remove();
+//             }.bind(this));
+//             // or if you don't need to wait until hidden, just run callback
+//             // test(this.$el);
+//         }
+//     });
+//     var modal = new App.Views.CallbackModalView();
+//     modal.show();
+// }
 
 function selectionModal () {
     'use strict';
@@ -131,7 +123,7 @@ function selectionModal () {
         var id = $(this).attr('id');
         switch (id) {
         case 'base':
-            baseModal();
+            // baseModal();
             break;
         case 'model':
             modelModal();
@@ -146,7 +138,7 @@ function selectionModal () {
             eventModal();
             break;
         case 'callback':
-            callbackModal();
+            // callbackModal();
             break;
         case 'selection':
             selectionModal();
@@ -154,6 +146,42 @@ function selectionModal () {
         }
     });
 }
+
+(function () {
+    'use strict';
+    App.Views.Modal = App.Views.Modal || {};
+    App.Views.Modal.Base = function () {
+        console.log(this);
+        var modal = new App.Views.BaseModalView();
+        modal.show();
+    };
+})();
+
+(function () {
+    'use strict';
+    App.Views.Modal = App.Views.Modal || {};
+    App.Views.Modal.Callback = function () {
+        // callback function to access modal view info
+        // var test = function (val) {
+        //     console.log('callback', val);
+        // };
+        var parent = this;
+        App.Views.CallbackModalView = App.Views.BaseModalView.extend({
+            save: function () {
+                this.hide();
+                // run callback after modal is hidden
+                this.$el.on('hidden.bs.modal', function() {
+                    parent.test(this.$el);
+                    this.remove();
+                }.bind(this));
+                // or if you don't need to wait until hidden, just run callback
+                // test(this.$el);
+            }
+        });
+        var modal = new App.Views.CallbackModalView();
+        modal.show();
+    };
+})();
 
 $(function () {
     'use strict';
