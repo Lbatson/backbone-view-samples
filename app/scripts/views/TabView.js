@@ -13,10 +13,10 @@ App.Views = App.Views || {};
             var content = this.$('.tab-content .tab-pane.active');
             switch (view) {
             case 'modal':
-                var row = App.Views.ListRowView.extend({
+                var ModalRow = App.Views.ListRowView.extend({
                         template: App.Templates.ButtonRow
                     }),
-                    collection = new App.Collections.TestCollection([
+                    modalButtonCollection = new App.Collections.TestCollection([
                         new App.Models.TestModel({title: 'Base Modal', description: 'base'}),
                         new App.Models.TestModel({title: 'Model Modal', description: 'model'}),
                         new App.Models.TestModel({title: 'Collection Modal', description: 'collection'}),
@@ -25,26 +25,26 @@ App.Views = App.Views || {};
                         new App.Models.TestModel({title: 'Callback Modal', description: 'callback'}),
                         new App.Models.TestModel({title: 'Selection Modal', description: 'selection'}),
                     ]),
-                    list = App.Views.ListView.extend({
+                    ModalList = App.Views.ListView.extend({
                         el: content,
                         template: Handlebars.compile('<div class="list-body"></div>'),
                     }),
-                    modalList = new list({
-                        collection: collection,
-                        rowView: row
+                    modalList = new ModalList({
+                        collection: modalButtonCollection,
+                        rowView: ModalRow
                     });
                 this.addSubview(modalList);
                 modalList.render();
                 break;
             case 'list':
-                var row = App.Views.ListRowView.extend({
+                var ListRow = App.Views.ListRowView.extend({
                         template: App.Templates.ButtonRow
                     }),
-                    collection = new App.Collections.TestCollection([
+                    listButtonCollection = new App.Collections.TestCollection([
                         new App.Models.TestModel({title: 'List View', description: 'baseList'}),
                         new App.Models.TestModel({title: 'List View Events', description: 'eventList'})
                     ]),
-                    list = App.Views.ListView.extend({
+                    ListOfLists = App.Views.ListView.extend({
                         el: content,
                         template: App.Templates.TabList,
                         events: {
@@ -81,9 +81,9 @@ App.Views = App.Views || {};
                             ]);
                         }
                     }),
-                    listOfLists = new list({
-                        collection: collection,
-                        rowView: row
+                    listOfLists = new ListOfLists({
+                        collection: listButtonCollection,
+                        rowView: ListRow
                     });
                 this.addSubview(listOfLists);
                 listOfLists.render();
