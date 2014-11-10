@@ -1,8 +1,8 @@
-App.Views = App.Views || {};
+App.Views.Modal = App.Views.Modal || {};
 
 (function () {
     'use strict';
-    App.Views.BaseModalView = App.Views.BaseView.extend({
+    App.Views.Modal.Base = App.Views.Base.extend({
         className: 'modal fade',
         template: App.Templates.Modal,
         closeButton: false,

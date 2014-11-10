@@ -1,8 +1,8 @@
-App.Views = App.Views || {};
+App.Views.Row = App.Views.Row || {};
 
 (function () {
     'use strict';
-    App.Views.ListRowView = App.Views.BaseView.extend({
+    App.Views.Row.Base = App.Views.Base.extend({
         className: 'list-row',
         template: App.Templates.ListRow,
         render: function(){

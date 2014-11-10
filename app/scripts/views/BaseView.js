@@ -2,7 +2,7 @@ App.Views = App.Views || {};
 
 (function () {
     'use strict';
-    App.Views.BaseView = Backbone.View.extend({
+    App.Views.Base = Backbone.View.extend({
         // overridden Backbone functions
         initialize: function (options) {
             this.options = _.defaults(options || {}, this.options);
