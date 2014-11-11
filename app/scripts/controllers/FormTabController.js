@@ -14,7 +14,8 @@ App.Controllers = App.Controllers || {};
             events: {
                 'click .js-revert-btn': 'revert'
             },
-            revert: function () {
+            revert: function (e) {
+                e.preventDefault();
                 this.model.revert();
             }
         });
