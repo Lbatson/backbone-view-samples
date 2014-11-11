@@ -16,34 +16,34 @@
         });
     });
 
-    describe('Base Model', function(){
-        it('model should have defaults', function(){
+    describe('Base Model', function () {
+        it('model should have defaults', function () {
             var model = new App.Models.BaseModel();
             expect(model).to.be.ok;
             expect(model.get('title')).to.equal('Test Model');
             expect(model.get('description')).to.equal('This is a test model');
         });
 
-        it('model.set() should update value and get() should return new value', function(){
+        it('model.set() should update value and get() should return new value', function () {
             var model = new App.Models.BaseModel();
             model.set('title', 'TEST');
             expect(model.get('title')).to.equal('TEST');
         });
 
-        it('model.capture() should create model._original', function(){
+        it('model.capture() should create model._original', function () {
             var model = new App.Models.BaseModel();
             model.capture();
             expect(model._original).to.be.an('object');
         });
 
-        it('model._original should have starting attributes from when created', function(){
+        it('model._original should have starting attributes from when created', function () {
             var model = new App.Models.BaseModel();
             model.capture();
             expect(model._original.title).to.equal(model.get('title'));
             expect(model._original.description).to.equal(model.get('description'));
         });
 
-        it('model.revert() should set model back to model._original values', function(){
+        it('model.revert() should set model back to model._original values', function () {
             var model = new App.Models.BaseModel();
             model.capture();
             model.set('title', 'TEST');
@@ -54,15 +54,25 @@
             expect(model.get('title')).to.equal('Test Model');
             expect(model.get('description')).to.equal('This is a test model');
         });
+
+        it('model should trigger capture and revert events with method calls', function () {
+            var model = new App.Models.BaseModel();
+            model.should.trigger('capture').when(function () {
+                return model.capture();
+            });
+            model.should.trigger('revert').when(function () {
+                return model.revert();
+            });
+        });
     });
 
-    describe('BaseView', function() {
-        it('base should be an object', function() {
+    describe('BaseView', function () {
+        it('base should be an object', function () {
             expect(new App.Views.Base()).to.be.an('object');
         });
     });
 
-    describe('BaseList', function() {
+    describe('BaseList', function () {
         // var sandbox;
         //
         // beforeEach(function() {
@@ -80,7 +90,7 @@
         // });
         //var model
 
-        it('Base List View should be an object', function() {
+        it('Base List View should be an object', function () {
             expect(new App.Views.BaseList()).to.be.an('object');
         });
 
