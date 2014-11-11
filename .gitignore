@@ -5,3 +5,5 @@ app/bower_components
 .tmp
 test/bower_components/
 .c9
+.DS_Store
+

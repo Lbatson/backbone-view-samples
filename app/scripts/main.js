@@ -1,6 +1,7 @@
 window.App = {
     Models: {},
     Collections: {},
+    Controllers: {},
     Views: {},
     Routers: {},
     init: function () {

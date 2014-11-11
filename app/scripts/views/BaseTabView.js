@@ -13,10 +13,10 @@ App.Views.Tab = App.Views.Tab || {};
             var target = this.$('.tab-content .tab-pane.active');
             switch (view) {
             case 'modal':
-                App.Views.ModalTab.call(this, target);
+                App.Controllers.ModalTab(target, this);
                 break;
             case 'list':
-                App.Views.ListTab.call(this, target);
+                App.Controllers.ListTab(target, this);
                 break;
             }
             return this;

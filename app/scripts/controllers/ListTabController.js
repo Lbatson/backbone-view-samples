@@ -1,6 +1,8 @@
+App.Controllers = App.Controllers || {};
+
 (function () {
     'use strict';
-    App.Views.ListTab = function (target) {
+    App.Controllers.ListTab = function (target, parent) {
         var ListRow = App.Views.Row.Base.extend({
                 template: App.Templates.ButtonRow
             }),
@@ -49,7 +51,7 @@
                 collection: listButtonCollection,
                 rowView: ListRow
             });
-        this.addSubview(listOfLists);
+        parent.addSubview(listOfLists);
         listOfLists.render();
     };
 })();

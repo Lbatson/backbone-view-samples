@@ -1,6 +1,8 @@
+App.Controllers = App.Controllers || {};
+
 (function () {
     'use strict';
-    App.Views.ModalTab = function (target) {
+    App.Controllers.ModalTab = function (target, parent) {
         var Row = App.Views.Row.Base.extend({
                 template: App.Templates.ButtonRow
             }),
@@ -108,7 +110,7 @@
                             new App.Models.TestModel({id: 3, title: 'Third model', description: 'Different description'}),
                         ]);
                     var SelectionModal = App.Views.Modal.Base.extend({
-                        body: App.Templates.ModalSelect,
+                        body: App.Templates.ModalBodySelect,
                         save: function () {
                             this.hide();
                             this.$el.on('hidden.bs.modal', function() {
@@ -131,7 +133,7 @@
                 collection: collection,
                 rowView: Row
             });
-        this.addSubview(modalList);
+        parent.addSubview(modalList);
         modalList.render();
     };
 })();
