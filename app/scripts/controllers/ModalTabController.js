@@ -7,13 +7,13 @@ App.Controllers = App.Controllers || {};
                 template: App.Templates.ButtonRow
             }),
             collection = new App.Collections.TestCollection([
-                new App.Models.TestModel({title: 'Base Modal', description: 'js-base-modal'}),
-                new App.Models.TestModel({title: 'Model Modal', description: 'js-model-modal'}),
-                new App.Models.TestModel({title: 'Collection Modal', description: 'js-collection-modal'}),
-                new App.Models.TestModel({title: 'Custom Modal', description: 'js-custom-modal'}),
-                new App.Models.TestModel({title: 'Event Modal', description: 'js-event-modal'}),
-                new App.Models.TestModel({title: 'Callback Modal', description: 'js-callback-modal'}),
-                new App.Models.TestModel({title: 'Selection Modal', description: 'js-selection-modal'}),
+                new App.Models.BaseModel({title: 'Base Modal', description: 'js-base-modal'}),
+                new App.Models.BaseModel({title: 'Model Modal', description: 'js-model-modal'}),
+                new App.Models.BaseModel({title: 'Collection Modal', description: 'js-collection-modal'}),
+                new App.Models.BaseModel({title: 'Custom Modal', description: 'js-custom-modal'}),
+                new App.Models.BaseModel({title: 'Event Modal', description: 'js-event-modal'}),
+                new App.Models.BaseModel({title: 'Callback Modal', description: 'js-callback-modal'}),
+                new App.Models.BaseModel({title: 'Selection Modal', description: 'js-selection-modal'}),
             ]),
             List = App.Views.List.Base.extend({
                 el: target,
@@ -33,7 +33,7 @@ App.Controllers = App.Controllers || {};
                 },
                 modelModal: function () {
                     console.log('base modal');
-                    var test = new App.Models.TestModel();
+                    var test = new App.Models.BaseModel();
                     var modal = new App.Views.Modal.Base({
                         model: test
                     });
@@ -43,9 +43,9 @@ App.Controllers = App.Controllers || {};
                     console.log('collection modal');
                     // pass collection to modal
                     var tests = new App.Collections.TestCollection([
-                        new App.Models.TestModel(),
-                        new App.Models.TestModel({title: 'Second model'}),
-                        new App.Models.TestModel({title: 'Third model', description: 'Different description'}),
+                        new App.Models.BaseModel(),
+                        new App.Models.BaseModel({title: 'Second model'}),
+                        new App.Models.BaseModel({title: 'Third model', description: 'Different description'}),
                     ]);
                     var modal = new App.Views.Modal.Base({
                         collection: tests
@@ -105,9 +105,9 @@ App.Controllers = App.Controllers || {};
                     var parent = this;
                     var selectedId,
                         tests = new App.Collections.TestCollection([
-                            new App.Models.TestModel({id: 1}),
-                            new App.Models.TestModel({id: 2, title: 'Second model'}),
-                            new App.Models.TestModel({id: 3, title: 'Third model', description: 'Different description'}),
+                            new App.Models.BaseModel({id: 1}),
+                            new App.Models.BaseModel({id: 2, title: 'Second model'}),
+                            new App.Models.BaseModel({id: 3, title: 'Third model', description: 'Different description'}),
                         ]);
                     var SelectionModal = App.Views.Modal.Base.extend({
                         body: App.Templates.ModalBodySelect,

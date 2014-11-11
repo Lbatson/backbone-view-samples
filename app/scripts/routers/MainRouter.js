@@ -9,14 +9,18 @@ App.Routers = App.Routers || {};
         Router = Backbone.Router.extend({
             routes: {
                 ''      : 'index',
+                'form'  : 'form',
                 'list'  : 'list',
                 'modal' : 'modal'
             },
-            initialize : function (){
+            initialize : function () {
                 Backbone.history.start();
             },
-            index: function(){
+            index: function() {
                 this.modal();
+            },
+            form: function () {
+                TabView.show('form');
             },
             list: function () {
                 TabView.show('list');

@@ -7,8 +7,8 @@ App.Controllers = App.Controllers || {};
                 template: App.Templates.ButtonRow
             }),
             listButtonCollection = new App.Collections.TestCollection([
-                new App.Models.TestModel({title: 'List View', description: 'js-base-list'}),
-                new App.Models.TestModel({title: 'List View Events', description: 'js-event-list'})
+                new App.Models.BaseModel({title: 'List View', description: 'js-base-list'}),
+                new App.Models.BaseModel({title: 'List View Events', description: 'js-event-list'})
             ]),
             ListOfLists = App.Views.List.Base.extend({
                 el: target,
@@ -41,9 +41,9 @@ App.Controllers = App.Controllers || {};
                 },
                 createTestCollection: function () {
                     return new App.Collections.TestCollection([
-                        new App.Models.TestModel({}),
-                        new App.Models.TestModel({title: 'Second model'}),
-                        new App.Models.TestModel({title: 'Third model', description: 'Different description'})
+                        new App.Models.BaseModel({}),
+                        new App.Models.BaseModel({title: 'Second model'}),
+                        new App.Models.BaseModel({title: 'Third model', description: 'Different description'})
                     ]);
                 }
             }),

@@ -18,6 +18,9 @@ App.Views.Tab = App.Views.Tab || {};
             case 'list':
                 App.Controllers.ListTab(target, this);
                 break;
+            case 'form':
+                App.Controllers.FormTab(target, this);
+                break;
             }
             return this;
         }
