@@ -1,8 +1,8 @@
-App.Views.Tab = App.Views.Tab || {};
+App.Views = App.Views || {};
 
 (function () {
     'use strict';
-    App.Views.Tab.Base = App.Views.Base.extend({
+    App.Views.BaseTab = App.Views.Base.extend({
         el: '.view-container',
         template: App.Templates.Tab,
         show: function (view) {

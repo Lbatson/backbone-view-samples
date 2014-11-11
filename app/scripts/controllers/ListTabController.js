@@ -3,14 +3,14 @@ App.Controllers = App.Controllers || {};
 (function () {
     'use strict';
     App.Controllers.ListTab = function (target, parent) {
-        var ListRow = App.Views.Row.Base.extend({
+        var ListRow = App.Views.BaseRow.extend({
                 template: App.Templates.ButtonRow
             }),
             listButtonCollection = new App.Collections.TestCollection([
                 new App.Models.BaseModel({title: 'List View', description: 'js-base-list'}),
                 new App.Models.BaseModel({title: 'List View Events', description: 'js-event-list'})
             ]),
-            ListOfLists = App.Views.List.Base.extend({
+            ListOfLists = App.Views.BaseList.extend({
                 el: target,
                 template: App.Templates.TabList,
                 events: {
@@ -18,13 +18,13 @@ App.Controllers = App.Controllers || {};
                     'click .js-event-list': 'eventList'
                 },
                 baseList: function () {
-                    var list = new App.Views.List.Base({
+                    var list = new App.Views.BaseList({
                         collection: this.createTestCollection()
                     });
                     list.render();
                 },
                 eventList: function () {
-                    var EventRow = App.Views.Row.Base.extend({
+                    var EventRow = App.Views.BaseRow.extend({
                         template: App.Templates.ListRowEvents,
                         events: {
                             'click .btn': 'alertMsg'
@@ -33,7 +33,7 @@ App.Controllers = App.Controllers || {};
                             window.alert('Model cid: ' + this.model.cid);
                         }
                     });
-                    var list = new App.Views.List.Base({
+                    var list = new App.Views.BaseList({
                         collection: this.createTestCollection(),
                         rowView: EventRow
                     });

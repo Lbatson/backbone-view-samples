@@ -1,13 +1,13 @@
-App.Views.List = App.Views.List || {};
+App.Views = App.Views || {};
 
 (function () {
     'use strict';
-    App.Views.List.Base = App.Views.Base.extend({
+    App.Views.BaseList = App.Views.Base.extend({
         el: '.listDisplay',
         headerTitle: 'List View',
         template: App.Templates.List,
         init: function () {
-            this.rowView = this.options.rowView || App.Views.Row.Base;
+            this.rowView = this.options.rowView || App.Views.BaseRow;
             if (this.collection) {
                 this.listenTo(this.collection, 'add', this.addRow);
                 this.listenTo(this.collection, 'remove', this.removeRow);

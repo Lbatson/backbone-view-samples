@@ -1,8 +1,8 @@
-App.Views.Form = App.Views.Form || {};
+App.Views = App.Views || {};
 
 (function () {
     'use strict';
-    App.Views.Form.Base = App.Views.Base.extend({
+    App.Views.BaseForm = App.Views.Base.extend({
         className: 'form-horizontal',
         tagName: 'form',
         template: App.Templates.Form,

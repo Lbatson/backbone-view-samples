@@ -4,7 +4,7 @@ App.Routers = App.Routers || {};
     'use strict';
     var $container = $('.view-container'),
         TabView = (function () {
-            return new App.Views.Tab.Base();
+            return new App.Views.BaseTab();
         })(),
         Router = Backbone.Router.extend({
             routes: {

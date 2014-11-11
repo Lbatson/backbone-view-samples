@@ -3,7 +3,7 @@ App.Controllers = App.Controllers || {};
 (function () {
     'use strict';
     App.Controllers.ModalTab = function (target, parent) {
-        var Row = App.Views.Row.Base.extend({
+        var Row = App.Views.BaseRow.extend({
                 template: App.Templates.ButtonRow
             }),
             collection = new App.Collections.TestCollection([
@@ -15,7 +15,7 @@ App.Controllers = App.Controllers || {};
                 new App.Models.BaseModel({title: 'Callback Modal', description: 'js-callback-modal'}),
                 new App.Models.BaseModel({title: 'Selection Modal', description: 'js-selection-modal'}),
             ]),
-            List = App.Views.List.Base.extend({
+            List = App.Views.BaseList.extend({
                 el: target,
                 template: Handlebars.compile('<div class="list-body"></div>'),
                 events: {
@@ -28,13 +28,13 @@ App.Controllers = App.Controllers || {};
                     'click .js-selection-modal': 'selectionModal'
                 },
                 baseModal: function () {
-                    var modal = new App.Views.Modal.Base();
+                    var modal = new App.Views.BaseModal();
                     modal.show();
                 },
                 modelModal: function () {
                     console.log('base modal');
                     var test = new App.Models.BaseModel();
-                    var modal = new App.Views.Modal.Base({
+                    var modal = new App.Views.BaseModal({
                         model: test
                     });
                     modal.show();
@@ -47,7 +47,7 @@ App.Controllers = App.Controllers || {};
                         new App.Models.BaseModel({title: 'Second model'}),
                         new App.Models.BaseModel({title: 'Third model', description: 'Different description'}),
                     ]);
-                    var modal = new App.Views.Modal.Base({
+                    var modal = new App.Views.BaseModal({
                         collection: tests
                     });
                     modal.show();
@@ -55,7 +55,7 @@ App.Controllers = App.Controllers || {};
                 customModal: function () {
                     console.log('custom modal');
                     // extend modal to change default properties
-                    var CustomModal = App.Views.Modal.Base.extend({
+                    var CustomModal = App.Views.BaseModal.extend({
                         closeButton: true,
                         title: 'Custom Header Title',
                         body: Handlebars.compile('<h5>Custom Body Content</h5>'),
@@ -70,7 +70,7 @@ App.Controllers = App.Controllers || {};
                 eventModal: function () {
                     console.log('event modal');
                     // pass different events. default events will be overriden
-                    var EventModal = App.Views.Modal.Base.extend({
+                    var EventModal = App.Views.BaseModal.extend({
                         events: {
                             'click .js-close-btn': 'hide',
                             'click .js-save-btn': 'alertMsg'
@@ -85,7 +85,7 @@ App.Controllers = App.Controllers || {};
                 callbackModal: function () {
                     console.log('callback modal');
                     var parent = this;
-                    var CallbackModal = App.Views.Modal.Base.extend({
+                    var CallbackModal = App.Views.BaseModal.extend({
                         save: function () {
                             this.hide();
                             // run callback after modal is hidden
@@ -109,7 +109,7 @@ App.Controllers = App.Controllers || {};
                             new App.Models.BaseModel({id: 2, title: 'Second model'}),
                             new App.Models.BaseModel({id: 3, title: 'Third model', description: 'Different description'}),
                         ]);
-                    var SelectionModal = App.Views.Modal.Base.extend({
+                    var SelectionModal = App.Views.BaseModal.extend({
                         body: App.Templates.ModalBodySelect,
                         save: function () {
                             this.hide();

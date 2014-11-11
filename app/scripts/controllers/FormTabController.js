@@ -3,7 +3,7 @@ App.Controllers = App.Controllers || {};
 (function () {
     'use strict';
     App.Controllers.FormTab = function (target, parent) {
-        var BindForm = App.Views.Form.Base.extend({
+        var BindForm = App.Views.BaseForm.extend({
             model: new App.Models.BaseModel(),
             bindings: {
                 '#input01': 'title',
