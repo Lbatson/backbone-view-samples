@@ -95,6 +95,18 @@
             expect(view._container.length).to.equal(0);
         });
 
+        it('should remove view from _.container with removeSubview and a given model', function () {
+            var model = new App.Models.BaseModel(),
+                modelView = new App.Views.Base({
+                    model: model
+                });
+            view.addSubview(modelView);
+            expect(view._container.length).to.equal(1);
+            expect(view._container.findByCid(modelView.cid)).to.equal(modelView);
+            view.removeSubview(null, model);
+            expect(view._container.length).to.equal(0);
+        });
+
         var secondChild = new App.Views.Base();
 
         it('should add multiple views with addSubviews', function () {
