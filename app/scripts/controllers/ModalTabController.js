@@ -7,13 +7,13 @@ App.Controllers = App.Controllers || {};
                 template: App.Templates.ButtonRow
             }),
             collection = new App.Collections.TestCollection([
-                new App.Models.BaseModel({title: 'Base Modal', description: 'js-base-modal'}),
-                new App.Models.BaseModel({title: 'Model Modal', description: 'js-model-modal'}),
-                new App.Models.BaseModel({title: 'Collection Modal', description: 'js-collection-modal'}),
-                new App.Models.BaseModel({title: 'Custom Modal', description: 'js-custom-modal'}),
-                new App.Models.BaseModel({title: 'Event Modal', description: 'js-event-modal'}),
-                new App.Models.BaseModel({title: 'Callback Modal', description: 'js-callback-modal'}),
-                new App.Models.BaseModel({title: 'Selection Modal', description: 'js-selection-modal'}),
+                new App.Models.BaseModel({title: 'Base', description: 'js-base-modal'}),
+                new App.Models.BaseModel({title: 'Model', description: 'js-model-modal'}),
+                new App.Models.BaseModel({title: 'Collection', description: 'js-collection-modal'}),
+                new App.Models.BaseModel({title: 'Custom', description: 'js-custom-modal'}),
+                new App.Models.BaseModel({title: 'Event', description: 'js-event-modal'}),
+                new App.Models.BaseModel({title: 'Callback', description: 'js-callback-modal'}),
+                new App.Models.BaseModel({title: 'Selection', description: 'js-selection-modal'}),
             ]),
             List = App.Views.BaseList.extend({
                 el: target,

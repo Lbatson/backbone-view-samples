@@ -7,8 +7,8 @@ App.Controllers = App.Controllers || {};
                 template: App.Templates.ButtonRow
             }),
             listButtonCollection = new App.Collections.TestCollection([
-                new App.Models.BaseModel({title: 'List View', description: 'js-base-list'}),
-                new App.Models.BaseModel({title: 'List View Events', description: 'js-event-list'})
+                new App.Models.BaseModel({title: 'Base', description: 'js-base-list'}),
+                new App.Models.BaseModel({title: 'Events', description: 'js-event-list'})
             ]),
             ListOfLists = App.Views.BaseList.extend({
                 el: target,
