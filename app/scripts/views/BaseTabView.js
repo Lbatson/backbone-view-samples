@@ -3,10 +3,11 @@ App.Views = App.Views || {};
 (function () {
     'use strict';
     App.Views.BaseTab = App.Views.Base.extend({
-        el: '.view-container',
+        className: 'tab-view',
         template: App.Templates.Tab,
         show: function (view) {
-            this.removeSubviews().render().tab(view);
+            this.render().tab(view);
+            return this;
         },
         tab: function (view) {
             this.$('a[href="#' + view + '"]').tab('show');
