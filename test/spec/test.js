@@ -1,11 +1,11 @@
 (function () {
     'use strict';
-    describe('The App', function() {
-        it('App exists', function() {
+    describe('App', function() {
+        it('exists', function() {
             expect(App).to.exist;
         });
 
-        it('App contains Views, Models, Controllers, Routers, and Collections', function(){
+        it('contains Views, Models, Controllers, Routers, and Collections', function(){
             expect(App).to.include.keys(
                 'Collections',
                 'Models',
@@ -23,29 +23,29 @@
             model = new App.Models.BaseModel();
         });
 
-        it('model should have defaults', function () {
+        it('should have defaults', function () {
             expect(model).to.be.an('object');
             expect(model.get('title')).to.equal('Test Model');
             expect(model.get('description')).to.equal('This is a test model');
         });
 
-        it('model.set() should update value and get() should return new value', function () {
+        it('set() should update value and get() should return new value', function () {
             model.set('title', 'TEST');
             expect(model.get('title')).to.equal('TEST');
         });
 
-        it('model.capture() should create model._original', function () {
+        it('capture() should create ._original', function () {
             model.capture();
             expect(model._original).to.be.an('object');
         });
 
-        it('model._original should have starting attributes from when created', function () {
+        it('._original should have attributes of initialized model', function () {
             model.capture();
             expect(model._original.title).to.equal(model.get('title'));
             expect(model._original.description).to.equal(model.get('description'));
         });
 
-        it('model.revert() should set model back to model._original values', function () {
+        it('revert() should set model back to ._original values', function () {
             model.capture();
             model.set('title', 'TEST');
             model.set('description', 'TEST');
@@ -56,7 +56,7 @@
             expect(model.get('description')).to.equal('This is a test model');
         });
 
-        it('model should trigger capture and revert events with method calls', function () {
+        it('should trigger capture and revert events with method calls', function () {
             model.should.trigger('capture').when(function () {
                 return model.capture();
             });
