@@ -17,34 +17,35 @@
     });
 
     describe('Base Model', function () {
+        var model;
+
+        beforeEach(function () {
+            model = new App.Models.BaseModel();
+        });
+
         it('model should have defaults', function () {
-            var model = new App.Models.BaseModel();
-            expect(model).to.be.ok;
+            expect(model).to.be.an('object');
             expect(model.get('title')).to.equal('Test Model');
             expect(model.get('description')).to.equal('This is a test model');
         });
 
         it('model.set() should update value and get() should return new value', function () {
-            var model = new App.Models.BaseModel();
             model.set('title', 'TEST');
             expect(model.get('title')).to.equal('TEST');
         });
 
         it('model.capture() should create model._original', function () {
-            var model = new App.Models.BaseModel();
             model.capture();
             expect(model._original).to.be.an('object');
         });
 
         it('model._original should have starting attributes from when created', function () {
-            var model = new App.Models.BaseModel();
             model.capture();
             expect(model._original.title).to.equal(model.get('title'));
             expect(model._original.description).to.equal(model.get('description'));
         });
 
         it('model.revert() should set model back to model._original values', function () {
-            var model = new App.Models.BaseModel();
             model.capture();
             model.set('title', 'TEST');
             model.set('description', 'TEST');
@@ -56,7 +57,6 @@
         });
 
         it('model should trigger capture and revert events with method calls', function () {
-            var model = new App.Models.BaseModel();
             model.should.trigger('capture').when(function () {
                 return model.capture();
             });
@@ -67,8 +67,46 @@
     });
 
     describe('BaseView', function () {
-        it('base should be an object', function () {
-            expect(new App.Views.Base()).to.be.an('object');
+        var view;
+
+        beforeEach(function () {
+            view = new App.Views.Base();
+        });
+
+        it('should be an object', function () {
+            expect(view).to.be.an('object');
+        });
+
+        it('should have _.container be an instance of backbone.babysitter object', function () {
+            expect(view._container).to.be.an('object');
+            expect(view._container).to.be.an.instanceof(Backbone.ChildViewContainer);
+        });
+
+        var firstChild = new App.Views.Base();
+
+        it('should add view to track in _.container with addSubview', function () {
+            view.addSubview(firstChild);
+            expect(view._container.length).to.equal(1);
+            expect(view._container.findByCid(firstChild.cid)).to.equal(firstChild);
+        });
+
+        it('should remove view from _.container with removeSubview', function () {
+            view.removeSubview(firstChild);
+            expect(view._container.length).to.equal(0);
+        });
+
+        var secondChild = new App.Views.Base();
+
+        it('should add multiple views with addSubviews', function () {
+            view.addSubviews([firstChild, secondChild]);
+            expect(view._container.length).to.equal(2);
+            expect(view._container.findByCid(firstChild.cid)).to.equal(firstChild);
+            expect(view._container.findByCid(secondChild.cid)).to.equal(secondChild);
+        });
+
+        it('should remove all subviews from ._container', function () {
+            view.removeSubviews();
+            expect(view._container.length).to.equal(0);
         });
     });
 

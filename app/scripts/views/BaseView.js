@@ -31,6 +31,11 @@ App.Views = App.Views || {};
         addSubview: function (view) {
             this._container.add(view);
         },
+        addSubviews: function (views) {
+            _.each(views, function (view) {
+                this._container.add(view);
+            }, this);
+        },
         removeSubview: function (view, model) {
             if (!view) {
                 view = this._container.findByModel(model);
