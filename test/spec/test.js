@@ -138,14 +138,25 @@
         //   // restore the environment as it was before
         //   sandbox.restore();
         // });
-        //var model
+        var model,
+            collection;
 
-        it('Base List View should be an object', function () {
+        beforeEach(function () {
+            model = new App.Models.BaseModel();
+            collection = new App.Collections.TestCollection();
+        });
+
+        it('should be an object', function () {
             expect(new App.Views.BaseList()).to.be.an('object');
         });
 
-        // it("Mode should trigger an add event"){
-        //
-        // }
+        // it('should call addRow() when model added to collection', function () {
+        //     var listView = new App.Views.BaseList({
+        //         collection: collection
+        //     });
+        //     listView.should.call('addRow').when(function () {
+        //         return collection.add(new App.Models.BaseModel());
+        //     });
+        // });
     });
 })();
