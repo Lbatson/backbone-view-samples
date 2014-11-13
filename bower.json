@@ -11,5 +11,8 @@
     "backbone.babysitter": "~0.1.5",
     "backbone.stickit": "~0.8.0"
   },
-  "devDependencies": {}
+  "devDependencies": {},
+  "resolutions": {
+    "jquery": "~2.1.0"
+  }
 }
