@@ -14,7 +14,7 @@ App.Views = App.Views || {};
             'click .js-save-btn': 'save'
         },
         init: function () {
-            this.$el.on('hidden.bs.modal', this.destroy.bind(this));
+            this.$el.on('hidden.bs.modal', this.remove.bind(this));
             if (this.model) {
                 this.listenTo(this.model, 'change', this.render);
             }
